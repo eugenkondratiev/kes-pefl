@@ -17,7 +17,7 @@ const jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-findPlayerRouter.get('/bor/', urlencodedParser, async (req, res) => {
+findPlayerRouter.get('/bor/', async (req, res) => {
     console.log("#### GET find-players bor Route");
     let _resp = null;
     // const { name } = req.params;
@@ -46,9 +46,10 @@ findPlayerRouter.get('/bor/', urlencodedParser, async (req, res) => {
         const players = answer.count ? getPlayersFromResponse(answer.data[0], restName) : [];
         console.log("players - ", players);
         _resp = {
-            count: players.length, 
-            data:players,
-             error: players.length ? undefined : "NO_PLAYER_FOUND"};
+            count: players.length,
+            data: players,
+            error: players.length ? undefined : "NO_PLAYER_FOUND"
+        };
         // _resp = _count ? answer.length : answer
     } catch (error) {
         _resp = error.message;
@@ -61,6 +62,49 @@ findPlayerRouter.get('/bor/', urlencodedParser, async (req, res) => {
 
     }
 
+})
+
+findPlayerRouter.get('/allbase/', async (req, res) => {
+    console.log("#### GET all-players");
+    let _resp = null;
+    // const { name } = req.params;
+    try {
+        const { id, name, count, namePart ,limit, start: _start = false } = req.query;
+        const _count = count || (!limit && !_start);
+        const _limit = _count ? false : (limit || DEFAULT_PLAYERS_LIMIT);
+
+        const _query = {};
+        id ? _query._id = parseInt(id) : undefined
+        namePart || name
+            ? _query.name = { $regex: name || namePart, $options: "i" }
+            : undefined
+
+        const answer = await getMongoData(
+            'allbase',
+            _query,
+            // { limit: 70000, start: false },
+            { limit: +_limit || false, start: _start || false },
+            // { [`${_projection}`]: 1 }
+        );
+        console.log("### resp count", answer.count);
+        // console.log("### resp info", answer && answer.data.length);
+        const players = answer.count ? answer.data : [];
+        // console.log("players - ", players);
+        _resp = {
+            count: answer.count,
+            // count: players.length,
+            data: players,
+            error: players.length ? undefined : "NO_PLAYER_FOUND"
+        };
+        // _resp = _count ? answer.length : answer
+    } catch (error) {
+        _resp = error.message;
+        console.log("/bor/ error", error)
+    }
+    finally {
+        // console.log("### finally resp ", _resp)
+        res.json(_resp)
+    }
 })
 
 

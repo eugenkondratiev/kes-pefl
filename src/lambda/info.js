@@ -18,15 +18,8 @@ basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
     console.log("#### GET clubs Route");
     let _resp = null;
     // const { nation } = req.params;
-
     try {
         const { id, name, count } = req.query;
-        // const _count = count || (!limit && !_start);
-        // const _limit = _count ? false : (limit || DEFAULT_PLAYERS_LIMIT);
-        // console.log("####### get clubsquery  : ", req.query);
-        // console.log("####### _limit _start _count  : ", _limit, _start ,_count);
-
-        // console.log("####### get nation params : ", req.params, "  nation = ", nation, +nation, +nation ? { "nation": +nation } : {});
         console.log("#### GET clubs nation  Route");
         const _query = {};
         id ? _query._id = parseInt(id) : undefined
@@ -36,13 +29,7 @@ basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
             _query,
             { limit: 7000 }
         );
-
-        // console.log("### resp info", answer);
-
-        // console.log("### resp info", answer && answer.data.length);
-
         _resp = answer;
-        // _resp = _count ? answer.length : answer
     } catch (error) {
         _resp = error.message;
         console.log("/clubs/ error", error)
@@ -51,9 +38,7 @@ basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
         console.log("### finally resp ", _resp)
 
         res.status(200).json(_resp)
-
     }
-
 })
 
 basesRouter.get('/nations/', urlencodedParser, async (req, res) => {
@@ -61,11 +46,15 @@ basesRouter.get('/nations/', urlencodedParser, async (req, res) => {
     let _resp = null;
     // const { nation } = req.params;
     try {
-        const { id, name, count } = req.query;
+        const { id, name, count, namePart } = req.query;
         console.log("#### GET nations nation  Route");
         const _query = {};
         id ? _query._id = parseInt(id) : undefined
-        name ? _query.name = name : undefined
+
+        namePart || name
+            ? _query.name = {$regex: name || namePart, $options:"i"}
+            : undefined
+        // console.log("nations query - ", _query);
         const answer = await getMongoData(
             'nations',
             _query,

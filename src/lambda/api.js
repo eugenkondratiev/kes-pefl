@@ -76,6 +76,30 @@ mainRouter.get('/db-test', async (req, res) => {
 
 })
 
+mainRouter.get('/bor',async (req, res) => {
+    console.log("#### GET ALL bor Route");
+    let _resp = null;
+    // const { letter } = req.params;
+    try {
+        // const { id, name, count } = req.query;
+        console.log("#### GET ALL bor  Route");
+        // id ? _query._id = parseInt(id) : undefined
+        const answer = await getMongoData(
+            'players-bor',
+            {},
+            { limit: 300 }
+        );
+        _resp = answer;
+    } catch (error) {
+        _resp = error.message;
+        console.log("api/bor/ error", error)
+    }
+    finally {
+        // console.log("### finally resp ", _resp)
+        res.status(200).json(_resp)
+    }
+})
+
 mainRouter.get('/env-test', async (req, res) => {
 
     const dotenv = require('dotenv');

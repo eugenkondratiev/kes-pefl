@@ -19,21 +19,21 @@ module.exports = async (_collection, _query = {}, _options, _projection = {}) =>
     const client = await MongoClient.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
     // const dataBase = await client.db(DB_NAME);
     // console.log("count = ", count, " , limit = ", limit, "    start  = ", start);
-    const _allbase = await client.db(DB_NAME).collection(_collection);
-    _count = await _allbase.find(_query).count();
+    const _c = await client.db(DB_NAME).collection(_collection);
+    _count = await _c.find(_query).count();
 
     if (count) {
 
-      _data = await _allbase.countDocuments();
+      _data = await _c.countDocuments();
     } else if (limit) {
       if (start) {
-        _data = await _allbase.find(_query).project(_projection).skip(+start).limit(+limit).toArray();
+        _data = await _c.find(_query).project(_projection).skip(+start).limit(+limit).toArray();
       } else {
-        _data = await _allbase.find(_query).project(_projection).limit(+limit).toArray();
+        _data = await _c.find(_query).project(_projection).limit(+limit).toArray();
       }
 
     } else {
-      _data = await _allbase.find(_query).project(_projection).toArray();
+      _data = await _c.find(_query).project(_projection).toArray();
 
     }
     await client.close();

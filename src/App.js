@@ -8,6 +8,7 @@ import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import './App.css';
 
 import getHostTest from './mongo/host-test';
+import getBorTest from './mongo/get-whole-bor';
 
 function App() {
 
@@ -15,6 +16,16 @@ function App() {
     try {
       const host = await getHostTest();
       alert(host.host)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function showAllBor() {
+    try {
+      const bor = await getBorTest();
+      console.log(bor);
+      alert(bor)
     } catch (error) {
       console.log(error)
     }
@@ -28,11 +39,20 @@ function App() {
           Edit <code>src/App.js</code> and save to reload.
         </p> */}
         <Button
+          className='main-button'
+          size='large'
+          shape='round'
           onClick={alertic}
-          // size="medium"
-        >
+        // size="medium"
+        >Тест API</Button>
 
-        </Button>
+        <Button
+          className='main-button'
+          size='large'
+          shape='round'
+          onClick={showAllBor}
+        // size="medium"
+        >Тест whole-Bor</Button>
         {/* <a
           className="App-link"
           href="https://reactjs.org"
