@@ -8,11 +8,11 @@ const app = express();
 const DEFAULT_PLAYERS_LIMIT = 40;
 
 const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json()
+const jsonParser = express.json()
 const getMongoData = require('../mongo/get-mongo-data');
 
 // create application/x-www-form-urlencoded parser
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const urlencodedParser = express.urlencoded({ extended: false })
 
 basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
     console.log("#### GET clubs Route");

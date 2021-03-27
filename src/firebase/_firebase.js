@@ -11,7 +11,8 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_CONFIG_APPID
 };
 
-const firebase = require('firebase');
+// const firebase = require('firebase');
+import firebase from 'firebase';
 
 class Firebase {
   constructor() {
@@ -28,7 +29,23 @@ class Firebase {
     return this.db.ref(`/${this.userUid}`)
   };
   getAllData = () => {
-    console.log('getAllData   ..... ')
+    // console.log('getAllData   ..... ')
+    return this.db.ref('/')
+  };
+
+  getClubs = ()=>this.db.ref(`/clubs/`);
+  getNations = ()=>this.db.ref(`/nations/`);
+
+  getFolder = (_folder) => {
+    // console.log("!!!! --   data from", _folder, new Date().toUTCString())
+    return this.db.ref(`/${_folder}`)
+  };
+  // setBor= (borObject) => {
+  //   console.log("!!!! --   borObject length ", borObject.length, new Date().toUTCString())
+  //   return this.db.ref(`/bor`).set(borObject,(err)=>{err ? console.log("setBor - " ,err): undefined })
+  // };
+  getAllData = () => {
+    // console.log('getAllData   ..... ')
     return this.db.ref('/')
   };
 

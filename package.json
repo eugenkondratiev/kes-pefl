@@ -15,7 +15,8 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
-    "serverless-http": "^2.5.0"
+    "serverless-http": "^2.5.0",
+    "update": "^0.7.4"
   },
   "scripts": {
     "start:lambda": "./node_modules/.bin/netlify-lambda serve src/lambda",
