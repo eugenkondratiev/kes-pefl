@@ -37,6 +37,8 @@ function App() {
       console.log("showTestData - ", _apiRef);
       const data = await fetchOwnApi(_apiRef);
       console.log("  showTestData - ", data);
+      alert(data.data[0].name);
+      alert(JSON.stringify(data.data[0], null, " "));
       // alert(data)
     } catch (error) {
       console.log("showTestData Error-  ", error)
@@ -72,6 +74,13 @@ function App() {
           onClick={() => showTestData('/.netlify/functions/findPlayer/allbase')}
         // size="medium"
         >Тест mongo-allbase</Button>
+        <Button
+          className='main-button'
+          size='large'
+          shape='round'
+          onClick={() => showTestData('/.netlify/functions/allplayers')}
+        // size="medium"
+        >Тест mongo-allbase 2 </Button>
         <Button
           className='main-button'
           size='large'
