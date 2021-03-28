@@ -36,7 +36,6 @@ exports.handler = async function (event, context) {
             ;
         return {
             statusCode: 200,
-            headers: {'Content-type: text/html; charset=utf-8'},
             body: JSON.stringify({
                 count: answer.count,
                 data: players,
