@@ -45,6 +45,33 @@ function App() {
     }
   }
 
+  async function showAllPlayersData() {
+    const _apiRef = '/.netlify/functions/allplayers'
+
+    try {
+      const data1 = await fetchOwnApi(_apiRef + "?limit=30000");
+      console.log(" DATA1 = ", data1);
+      console.log("  showAllPlayersData  1 -  ", data1.count, data1.data[3000]);
+      const data2 = await fetchOwnApi(_apiRef + "?start=30001&limit=40000");
+      // console.log("  showAllPlayersData  2 -  ", data2);
+      console.log("  showAllPlayersData  2 -  ", data2.count, data2.data[1]);
+
+      const data = {
+        count: +data1.count + +data2.count,
+        data: [...data1.data, ...data2.data],
+        error: data1.error || data2.error
+      }
+      console.log("data.count -", data.count);
+      console.log("data -", data);
+      alert(data.data[0].count);
+      alert(data.data[0].name);
+      // alert(JSON.stringify(data.data[0], null, " "));
+      // alert(data)
+    } catch (error) {
+      console.log("showTestData Error-  ", error)
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -78,7 +105,7 @@ function App() {
           className='main-button'
           size='large'
           shape='round'
-          onClick={() => showTestData('/.netlify/functions/allplayers')}
+          onClick={() => showAllPlayersData()}
         // size="medium"
         >Тест mongo-allbase 2 </Button>
         <Button

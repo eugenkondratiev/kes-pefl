@@ -1,7 +1,7 @@
 
 exports.handler = async function (event, context) {
     let resp = event.path;
-    console.log("### event - ", event);
+    // console.log("### event - ", event);
     event.isBase64Encoded = false;
     // console.log("### context - ", context);
 
@@ -32,7 +32,7 @@ exports.handler = async function (event, context) {
         );
 
         const players = answer.count ? answer.data : [];
-        console.log("##### players - ", players)
+        // console.log("##### players - ", players)
             ;
         return {
             statusCode: 200,
