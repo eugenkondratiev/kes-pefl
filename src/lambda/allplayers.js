@@ -1,14 +1,14 @@
 
 exports.handler = async function (event, context) {
     let resp = event.path;
-    // console.log("### event - ", event);
+    console.log("### event.path - ", event.path);
     event.isBase64Encoded = false;
     // console.log("### context - ", context);
 
     const formMongoQuery = require('../mongo/form-mongo-query')
 
     const getMongoData = require('../mongo/get-mongo-data');
-    const getPlayersFromResponse = require('../utils/get-player-from-response');
+    // const getPlayersFromResponse = require('../utils/get-player-from-response');
 
     const DEFAULT_PLAYERS_LIMIT = 40;
 

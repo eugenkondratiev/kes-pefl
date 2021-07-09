@@ -63,10 +63,8 @@ function App() {
       }
       console.log("data.count -", data.count);
       console.log("data -", data);
-      alert(data.data[0].count);
+      alert(data.data.count);
       alert(data.data[0].name);
-      // alert(JSON.stringify(data.data[0], null, " "));
-      // alert(data)
     } catch (error) {
       console.log("showTestData Error-  ", error)
     }

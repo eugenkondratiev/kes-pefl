@@ -22,8 +22,8 @@ basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
         const { id, name, count } = req.query;
         console.log("#### GET clubs nation  Route");
         const _query = {};
-        id ? _query._id = parseInt(id) : undefined
-        name ? _query.name = name : undefined
+        if (id ) _query._id = parseInt(id) 
+        if (name ) _query.name = name 
         const answer = await getMongoData(
             'clubs',
             _query,
@@ -48,12 +48,10 @@ basesRouter.get('/nations/', urlencodedParser, async (req, res) => {
     try {
         const { id, name, count, namePart } = req.query;
         console.log("#### GET nations nation  Route");
-        const _query = {};
-        id ? _query._id = parseInt(id) : undefined
+        const _query = {}
+        if( id ) _query._id = parseInt(id) 
 
-        namePart || name
-            ? _query.name = {$regex: name || namePart, $options:"i"}
-            : undefined
+        if (namePart || name) _query.name = {$regex: name || namePart, $options:"i"}
         // console.log("nations query - ", _query);
         const answer = await getMongoData(
             'nations',
@@ -81,7 +79,7 @@ basesRouter.get('/bor/:letter/', urlencodedParser, async (req, res) => {
         console.log("#### GET bor  Route");
         const _query = {};
         // id ? _query._id = parseInt(id) : undefined
-        (letter && letter !== 'all') ? _query._id = letter.toLocaleLowerCase() : undefined
+        if (letter && letter !== 'all')  _query._id = letter.toLocaleLowerCase() 
         const answer = await getMongoData(
             'players-bor',
             _query,
