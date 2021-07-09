@@ -31,11 +31,11 @@ exports.handler = async function (event, context) {
 
         let _resp = null
 
-        if (_type === 'nations') {
+        if (_type === 'nations' || _type === 'clubs') {
             try {
                 // console.log("nations query - ", _query);
                 const answer = await getMongoData(
-                    'nations',
+                    _type,
                     _id ? { "_id": +_id } : {},
                     {}
                 );
@@ -46,14 +46,15 @@ exports.handler = async function (event, context) {
                     body: JSON.stringify({
                         count: _resp.count,
                         data: _resp.data,
-                        error: _resp.data.length ? undefined : "NO_NATIONS_FOUND"
+                        error: _resp.data.length ? undefined :
+                            _type === 'nations' ? "NO_NATIONS_FOUND" : "NO_CLUB_FOUND"
                     }
                         , null, " ")
                 }
 
             } catch (error) {
                 _resp = error.message;
-                console.log("/nations/ error", error)
+                console.log(_type + " error", error)
                 return {
                     statusCode: 500,
                     body: JSON.stringify({
@@ -64,8 +65,6 @@ exports.handler = async function (event, context) {
                 }
             }
 
-        } else if (_type === 'clubs') {
-            ;
         } else {
             console.log("maininfo/ NO PARAMETRS type error")
             return formErrorResponceObject(WRONG_PARAMETERS_ERROR)
