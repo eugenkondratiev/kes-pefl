@@ -1,6 +1,6 @@
 
 exports.handler = async function (event, context) {
-    let resp = event.path;
+    // let resp = event.path;
     console.log("### event.path - ", event.path);
     event.isBase64Encoded = false;
     // console.log("### context - ", context);
@@ -10,7 +10,7 @@ exports.handler = async function (event, context) {
     const getMongoData = require('../mongo/get-mongo-data');
     // const getPlayersFromResponse = require('../utils/get-player-from-response');
 
-    const DEFAULT_PLAYERS_LIMIT = 40;
+    // const DEFAULT_PLAYERS_LIMIT = 40;
 
 
     console.log("#### GET all-players allbase clear lambda!!!!");

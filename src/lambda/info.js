@@ -5,10 +5,11 @@ const { Router } = require('express');
 const basesRouter = Router();
 
 const app = express();
-const DEFAULT_PLAYERS_LIMIT = 40;
 
-const bodyParser = require('body-parser');
-const jsonParser = express.json()
+// const DEFAULT_PLAYERS_LIMIT = 40;
+
+// const bodyParser = require('body-parser');
+// const jsonParser = express.json()
 const getMongoData = require('../mongo/get-mongo-data');
 
 // create application/x-www-form-urlencoded parser
@@ -19,7 +20,7 @@ basesRouter.get('/clubs/', urlencodedParser, async (req, res) => {
     let _resp = null;
     // const { nation } = req.params;
     try {
-        const { id, name, count } = req.query;
+        const { id, name } = req.query;
         console.log("#### GET clubs nation  Route");
         const _query = {};
         if (id ) _query._id = parseInt(id) 
@@ -46,7 +47,7 @@ basesRouter.get('/nations/', urlencodedParser, async (req, res) => {
     let _resp = null;
     // const { nation } = req.params;
     try {
-        const { id, name, count, namePart } = req.query;
+        const { id, name, namePart } = req.query;
         console.log("#### GET nations nation  Route");
         const _query = {}
         if( id ) _query._id = parseInt(id) 
