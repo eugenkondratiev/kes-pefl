@@ -1,10 +1,11 @@
 import React from 'react';
+import LayerPage from '../LayerPage';
 
 function EmptyPage(props) {
     return (
-        <div>
+        <LayerPage>
             Just Epmty Page
-        </div>
+        </LayerPage>
     );
 }
 
