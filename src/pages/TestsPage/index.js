@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Input, Button } from 'antd';
+import { Button } from 'antd';
 
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import '../../App.css';
+import './TestsPage.scss';
 
 
 import getHostTest from '../../mongo/host-test';
@@ -84,13 +84,14 @@ function TestsPage(props) {
             <p>
             Edit <code>src/App.js</code> and save to reload.
           </p> */}
-          <Button
+          <StyledButton
             className='main-button'
             size='large'
             shape='round'
             onClick={alertic}
           // size="medium"
-          >Тест API</Button>
+          >Тест API
+          </StyledButton>
 
           <Button
             className='main-button'

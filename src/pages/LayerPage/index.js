@@ -1,27 +1,18 @@
-import { Layout, Menu } from 'antd';
+import { Layout  } from 'antd';
 import React from 'react';
-import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import stl from './LayerPage.module.scss';
 import './LayerPage.css'
-import cn from 'classnames';
 
 
-import { A, useRoutes, usePath } from 'hookrouter'
 import MainFooter from '../../components/MainFooter';
-import SiderMenu from '../../components/SiderMenu';
 
 
 const { Header, Content } = Layout;
 
 function LayerPage(props) {
-  console.log(stl.root);
-  const currentPath = usePath();
-  console.log(currentPath);
+
   return (
-    // <Layout style={{ minHeight: "100vh" }}>
-
       <Layout>
-
         <Header className={stl["main-header"]}
           style={{
             padding: "12px 18px",
@@ -37,7 +28,6 @@ function LayerPage(props) {
         </Content>
         <MainFooter />
       </Layout>
-  /* </Layout> */
   );
 }
 

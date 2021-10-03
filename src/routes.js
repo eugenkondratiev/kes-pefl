@@ -20,14 +20,14 @@ export const LinkEnum = {
 
 
 const routes = {
-    [LinkEnum.HOME]: () => <TestsPage />,
     [LinkEnum.TESTS]: () => <TestsPage />,
     [LinkEnum.EMPTY]: () => <EmptyPage />,
     [LinkEnum.LAYOUT]: () => <LayerPage> XXX 2021 XXX</LayerPage>,
     // '/cups': navigate('/cups'),
     [LinkEnum.CUPS]:() =><CupsPage />,
     [LinkEnum.INTERNATIONAL]:() =><CupsPage />,
-    [LinkEnum.PLAYERS]:() =><PlayersPage />
+    [LinkEnum.PLAYERS]:() =><PlayersPage />,
+    [LinkEnum.HOME]: () => <TestsPage />
 }
 
 export default routes;
