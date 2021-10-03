@@ -1,0 +1,43 @@
+// @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+$third: #f5db13;
+$primary: #f2b807;
+$second: #f28f16;
+$danger: #d93e30;
+$white: #f2f2f2;
+$dark: #212121;
+
+$ice: #a2cff0;
+$grass: #70a83b;
+$darkrock: #a1a1a1;
+$fire: #f76545;
+$normal: #76aadb;
+$posion: #a974bc;
+$ground: #9b897b;
+$electric: #f7c545;
+
+$yellowGradient: linear-gradient(180deg, $third 0%, $primary 100%);
+
+$font-stack: Karla, Helvetica, sans-serif;
+
+$breakpoint-mobile: 400px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1440px;
+
+@mixin tablet {
+  @media (min-width: #{$breakpoint-mobile + 1}) and (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+
+@mixin notmobile {
+  @media (min-width: #{$breakpoint-mobile + 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}

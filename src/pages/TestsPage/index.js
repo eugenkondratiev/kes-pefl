@@ -9,6 +9,7 @@ import getHostTest from '../../mongo/host-test';
 import getBorTest from '../../mongo/get-whole-bor';
 import fetchOwnApi from '../../mongo/fetch-api-data';
 import LayerPage from '../LayerPage';
+import StyledButton from '../../components/StyledButton';
 
 function TestsPage(props) {
 
@@ -71,9 +72,14 @@ function TestsPage(props) {
 
   return (
     <LayerPage>
-
       <div className="App">
         <header className="App-header">
+
+          <StyledButton size='large' shape='round'
+            onClick={() => showTestData('/.netlify/functions/api/pairs')}
+          >
+            Ololo
+          </StyledButton>
           {/* <img src={logo} className="App-logo" alt="logo" />
             <p>
             Edit <code>src/App.js</code> and save to reload.

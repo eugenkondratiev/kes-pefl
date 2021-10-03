@@ -3,7 +3,7 @@ import LayerPage from '../LayerPage';
 
 function EmptyPage(props) {
     return (
-        <LayerPage>
+        <LayerPage mainCaption="EMPTY PAGE">
             Just Epmty Page
         </LayerPage>
     );

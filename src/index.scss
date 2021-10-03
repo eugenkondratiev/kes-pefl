@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  // background: linear-gradient(180deg, rgba(201,248,183,1) 14%, rgba(163,222,143,1) 88%);;
+  // background: $yellowGradient;
+  min-width: 100vw;
+  margin: 0;
+  overflow-x: hidden;
+  font-family: 'Karla', Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Karla', Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
