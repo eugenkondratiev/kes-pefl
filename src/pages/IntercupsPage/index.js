@@ -1,11 +1,15 @@
 import React from 'react';
-import LayerPage from './LayerPage';
+import Block from '../../components/Block';
+import LayerPage from '../LayerPage';
 
 function InterCupsPage(props) {
     return (
         <LayerPage mainCaption="История международных кубков">
-            OOOPS!!!S
-         Раздел в разработке
+
+            <Block header="Раздел в разработке">
+
+                Тут будет огонь, но не сейчас
+            </Block>
         </LayerPage>
     );
 }

@@ -4,6 +4,8 @@ import PlayersPage from './pages/PlayersPage';
 import EmptyPage from './pages/EmptyPage';
 import LayerPage from './pages/LayerPage';
 import TestsPage from './pages/TestsPage';
+import HomePage from './pages/HomePage';
+import InterCupsPage from './pages/IntercupsPage';
 
 export const LinkEnum = {
     HOME: '/',
@@ -23,11 +25,10 @@ const routes = {
     [LinkEnum.TESTS]: () => <TestsPage />,
     [LinkEnum.EMPTY]: () => <EmptyPage />,
     [LinkEnum.LAYOUT]: () => <LayerPage> XXX 2021 XXX</LayerPage>,
-    // '/cups': navigate('/cups'),
     [LinkEnum.CUPS]:() =><CupsPage />,
-    [LinkEnum.INTERNATIONAL]:() =><CupsPage />,
+    [LinkEnum.INTERNATIONAL]:() =><InterCupsPage/>,
     [LinkEnum.PLAYERS]:() =><PlayersPage />,
-    [LinkEnum.HOME]: () => <TestsPage />
+    [LinkEnum.HOME]: () => <HomePage/>
 }
 
 export default routes;

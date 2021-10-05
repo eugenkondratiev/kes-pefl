@@ -4,8 +4,9 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 
 import stl from './SiderMenu.module.scss';
 import { A } from 'hookrouter';
+import { LinkEnum } from '../../routes';
 
-const {Sider} = Layout;
+const { Sider } = Layout;
 
 function SiderMenu(props) {
     return (
@@ -24,23 +25,30 @@ function SiderMenu(props) {
 
             <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                 <Menu.Item key="1" icon={<UserOutlined />}>
-                    <A key="1" href='/players' >
+                    <A key="1" href={LinkEnum.HOME} >
+                        Начало
+                    </A>
+                </Menu.Item>
+                <Menu.Item key="2" icon={<UserOutlined />}>
+                    <A key="2" href={LinkEnum.PLAYERS} >
                         Игроки
                     </A>
                 </Menu.Item>
-                <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                    <A key="2" href='/cups' >
+                <Menu.Item key="3" icon={<VideoCameraOutlined />}>
+                    <A key="3" href={LinkEnum.CUPS} >
                         Кубки
                     </A>
                 </Menu.Item>
-                <Menu.Item key="3" icon={<UploadOutlined />}>
-                    <A key="3" href='/tests' >
+                <Menu.Item key="4" icon={<UploadOutlined />}>
+                    <A key="4" href={LinkEnum.TESTS} >
                         Тесты
                     </A>
 
                 </Menu.Item>
-                <Menu.Item key="4" icon={<UploadOutlined />}>
-                    Помощь
+                <Menu.Item key="5" icon={<VideoCameraOutlined />}>
+                    <A key="5" href={LinkEnum.INTERNATIONAL} >
+                        Международные
+                    </A>
                 </Menu.Item>
             </Menu>
 
