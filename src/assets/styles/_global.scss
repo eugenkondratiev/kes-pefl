@@ -1,22 +1,37 @@
 // @import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
 
-$third: #f5db13;
-$primary: #f2b807;
-$second: #f28f16;
+// $third: #f5db13;
+// $primary: #f2b807;
+// $second: #f28f16;
+// $danger: #d93e30;
+// $white: #f2f2f2;
+// $dark: #212121;
+$primary: #c9f8b7;
+$second: #a3de8f;
+$third: darken($second, 40%);
+
+
+// $text:darkgrey;
+
+$text:#222222;
+$text2:#e0e0e0;
+$text3:#4a776c;
+
+
 $danger: #d93e30;
-$white: #f2f2f2;
+$light: #f2f2f2;
 $dark: #212121;
 
-$ice: #a2cff0;
-$grass: #70a83b;
-$darkrock: #a1a1a1;
-$fire: #f76545;
-$normal: #76aadb;
-$posion: #a974bc;
-$ground: #9b897b;
-$electric: #f7c545;
+// $ice: #a2cff0;
+// $grass: #70a83b;
+// $darkrock: #a1a1a1;
+// $fire: #f76545;
+// $normal: #76aadb;
+// $posion: #a974bc;
+// $ground: #9b897b;
+// $electric: #f7c545;
 
-$yellowGradient: linear-gradient(180deg, $third 0%, $primary 100%);
+// $yellowGradient: linear-gradient(180deg, $third 0%, $primary 100%);
 
 $font-stack: Karla, Helvetica, sans-serif;
 

@@ -5,6 +5,9 @@ import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/i
 import stl from './SiderMenu.module.scss';
 import { A } from 'hookrouter';
 import { LinkEnum } from '../../routes';
+import mainMenu from './menu-structure';
+
+import './style.css';
 
 const { Sider } = Layout;
 
@@ -23,8 +26,16 @@ function SiderMenu(props) {
             <div className={stl["main-logo"]} />
             {/* export declare type MenuMode = 'horizontal' | 'vertical' | 'vertical-left' | 'vertical-right' | 'inline'; */}
 
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                <Menu.Item key="1" icon={<UserOutlined />}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} className={stl["menu-children"]}>
+                {mainMenu.map(({ _id, title, link, icon }) => {
+                    return <Menu.Item key={_id} icon={icon} className={stl["main-menu-item"]}>
+                        <A key={_id} href={link} >
+                            {title}
+                        </A>
+                    </Menu.Item>
+                })}
+                {
+                /* <Menu.Item key="1" icon={<UserOutlined />}>
                     <A key="1" href={LinkEnum.HOME} >
                         Начало
                     </A>
@@ -48,8 +59,8 @@ function SiderMenu(props) {
                 <Menu.Item key="5" icon={<VideoCameraOutlined />}>
                     <A key="5" href={LinkEnum.INTERNATIONAL} >
                         Международные
-                    </A>
-                </Menu.Item>
+                    </A> 
+                </Menu.Item>*/}
             </Menu>
 
         </Sider>

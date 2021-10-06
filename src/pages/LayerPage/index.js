@@ -1,7 +1,7 @@
 import { Layout  } from 'antd';
 import React from 'react';
 import stl from './LayerPage.module.scss';
-import './LayerPage.css'
+// import './LayerPage.css'
 
 
 import MainFooter from '../../components/MainFooter';
@@ -14,10 +14,10 @@ function LayerPage(props) {
   return (
       <Layout>
         <Header className={stl["main-header"]}
-          style={{
-            padding: "12px 18px",
-            color: "lightgray"
-          }}
+          // style={{
+          //   padding: "12px 18px",
+          //   color: "lightgray"
+          // }}
     >
           {props.mainCaption || null}
         </Header>

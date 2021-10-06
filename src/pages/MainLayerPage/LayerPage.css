@@ -1,8 +1,11 @@
-
-/* .ant-layout-sider{
-    background-color: olive;
+aside.ant-layout-sider {
+    box-shadow: 1px 1px 10px 2px lightslategrey;
 }
 
-section.main-logo.ant-layout-sider {
-    background-color: orange;
-} */
+.ant-layout-sider-zero-width-trigger{
+    background-color: #3b7c25;
+}
+ .ant-layout-sider-zero-width-trigger:hover {
+    background-color: #3b7c25;
+    transform: scale(1.1);
+}

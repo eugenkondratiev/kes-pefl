@@ -1,9 +1,15 @@
-// .menu-sider {
 
-// }
+@import '../../assets/styles/global';
 
-.main-logo.ant-layout-sider {
-    background-color: orange;
+aside.menu-sider {
+    background-color: $third;
+
+    & .menu-children {
+        background-color: $third;
+    
+    }
 }
 
-
+ul.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) li.ant-menu-item.ant-menu-item-selected.main-menu-item {
+    background-color: $primary;
+}

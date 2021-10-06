@@ -3,7 +3,6 @@ import React from 'react';
 import NotFoundPage from '../NotFoundPage';
 
 
-import './LayerPage.css'
 // import cn from 'classnames';
 
 
@@ -11,6 +10,7 @@ import { useRoutes, usePath } from 'hookrouter'
 import SiderMenu from '../../components/SiderMenu';
 import routes from '../../routes';
 
+import './LayerPage.css'
 
 
 function MainLayerPage(props) {

@@ -1,12 +1,30 @@
+@import '../../assets/styles/global.scss';
+
+
 .root {
     min-height: 100vh;
+
+
+
+
+}
+
+header.main-header {
+    color: $text;
+    background-color: $second;
+    box-shadow: 0px 1px 3px 2px $text3
 }
 
 // .ant-layout-sider.menu-sider{
 //     background-color: olive;
 // }
 
-
+.main-header {
+    // .main-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
@@ -15,16 +33,7 @@
     min-height: calc(100vh - 114px);
 }
 
-.main-header,
-.main-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.main-header {
-    color: lightgray
-}
 
 .layout-content-background>div {
     min-height: 100%;

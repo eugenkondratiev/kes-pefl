@@ -1,7 +1,9 @@
-.main-footer {
+@import '../../assets/styles/global.scss';
+
+footer.main-footer {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    background-color: $primary;
     box-shadow: 0px -1px 3px 2px lightslategrey
 }
