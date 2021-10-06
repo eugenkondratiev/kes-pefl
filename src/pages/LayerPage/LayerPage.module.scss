@@ -12,7 +12,12 @@
 header.main-header {
     color: $text;
     background-color: $second;
-    box-shadow: 0px 1px 3px 2px $text3
+    box-shadow: 0px 1px 3px 2px $text3;
+
+    line-height: 2rem;
+    text-align: center;
+    padding: 16px 4px;
+    height: min-content;
 }
 
 // .ant-layout-sider.menu-sider{

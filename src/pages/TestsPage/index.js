@@ -71,7 +71,7 @@ function TestsPage(props) {
   }
 
   return (
-    <LayerPage>
+    <LayerPage mainCaption="Тесты">
       <div className="App">
         <header className="App-header">
 
