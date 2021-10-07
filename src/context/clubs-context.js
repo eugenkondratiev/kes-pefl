@@ -2,33 +2,40 @@ import React, { useState, useEffect, useContext, createContext } from 'react';
 import { NETLIFY_FUNCTIONS } from '../utils/constants';
 
 import fetchOwnApi from '../mongo/fetch-api-data';
+import { NationsContext } from './nation-context';
 const ClubS_REF = NETLIFY_FUNCTIONS + 'maininfo/clubs';
 
-
-
-const transformClubsArray = (_) => {
-    const clubsArray = [];
-    [..._].forEach(({ _id, name, z, ffId, nominal }) => {
-        clubsArray[+_id] = [name, z, ffId, nominal];
-    })
-    return clubsArray
-}
 
 export const ClubsContext = createContext();
 // const ClubsContext = init => useContext(Context);
 // const ClubsContext = useContext(Context);
+
+
 
 export const ClubsProvider = ({ children }) => {
     const [clubs, setClubs] = useState(null)
     const [loading, setLoading] = useState(false)
 
     const getClub = _id => {
-        console.log("getClub  done ");
+        console.log("getClub  done ", _id);
         return clubs[+_id]
     }
 
-    const getClubs = async () => {
+    const { loading:nationsLOading, nations, getNation} = useContext(NationsContext)
 
+console.log("getNation - ",getNation, nationsLOading, nations,);
+
+    const transformClubsArray = (_) => {
+        const clubsArray = [];
+        [..._].forEach(({ _id, name, z, ffId, nominal }) => {
+            if (+ffId > 0 ) clubsArray[+_id] = [name, z, getNation(ffId)[0], nominal];
+        })
+        return clubsArray
+    }
+
+
+    const getClubs = async () => {
+        if (!nations) return
         setLoading(true);
         if (localStorage.clubs && localStorage.clubsLastUpdate && ( (Number(Date.now()) - Number(localStorage.getItem("clubsLastUpdate")) ) < 86400*1000*61)) {
             console.log("localStorage.clubs - ", localStorage.clubs);
@@ -45,8 +52,9 @@ export const ClubsProvider = ({ children }) => {
 
                 setClubs((prev) => {
                     console.log("#### - response.data - ", response.data);
-                    console.log("transformClubsArray(response.data) -", transformClubsArray(response.data));
                     const clubsArray = transformClubsArray(response.data);
+                    
+                    console.log("transformClubsArray(response.data) -", clubsArray);
 
                         localStorage.setItem("clubs", JSON.stringify(clubsArray))
                         localStorage.setItem("clubsLastUpdate", JSON.stringify(Date.now()))
@@ -71,7 +79,7 @@ export const ClubsProvider = ({ children }) => {
 
     useEffect(() => {
         getClubs();
-    }, [])
+    }, [nations])
 
     return (
         <ClubsContext.Provider
