@@ -1,11 +1,13 @@
+@import '../../assets/styles/global';
+
 .root {
-    background-color: olivedrab;
+    background-color: $third;
     padding: 2px 4px;
     line-height: 1.8em;
     text-align: center;
     border-radius: 4px;
-    color: lightgray;
+    color: $text2;
     font-weight: 600;
-    font-size: 1.2rem;
+    font-size: 1rem;
 
 }

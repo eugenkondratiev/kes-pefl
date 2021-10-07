@@ -37,7 +37,7 @@ function TestsPage(props) {
       console.log("showTestData - ", _apiRef);
       const data = await fetchOwnApi(_apiRef);
       console.log("  showTestData - ", data);
-      alert(data.data[0].name);
+      alert(data.data[0].id);
       alert(JSON.stringify(data.data[0], null, " "));
       // alert(data)
     } catch (error) {
@@ -76,7 +76,7 @@ function TestsPage(props) {
         <header className="App-header">
 
           <StyledButton size='large' shape='round'
-            onClick={() => showTestData('/.netlify/functions/api/pairs')}
+            onClick={() => showTestData('/.netlify/functions/maininfo/nations')}
           >
             Ololo
           </StyledButton>
