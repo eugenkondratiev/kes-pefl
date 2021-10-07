@@ -9,7 +9,7 @@ import NotFoundPage from '../NotFoundPage';
 import { useRoutes, usePath } from 'hookrouter'
 import SiderMenu from '../../components/SiderMenu';
 import routes from '../../routes';
-import {  NationsProvider } from '../../context/nation-context';
+// import {  NationsProvider } from '../../context/nation-context';
 
 import './LayerPage.css'
 
@@ -25,9 +25,9 @@ function MainLayerPage(props) {
     <Layout style={{ minHeight: "100vh" }}>
 
       <SiderMenu />
-      <NationsProvider>
+      {/* <NationsProvider> */}
         {match || <NotFoundPage />}
-      </NationsProvider>
+      {/* </NationsProvider> */}
 
     </Layout>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
-// import { NationsProvider } from './context/nation-context';
+import { ClubsProvider } from './context/clubs-context';
+import { NationsProvider } from './context/nation-context';
 
 import MainLayerPage from './pages/MainLayerPage';
 
@@ -7,9 +8,13 @@ import MainLayerPage from './pages/MainLayerPage';
 const App = () => {
 
   return (
-    // <NationsProvider>
+    <NationsProvider>
+      <ClubsProvider>
+
       <MainLayerPage />
-    // </NationsProvider>
+      
+      </ClubsProvider>
+    </NationsProvider>
 
   )
 }
