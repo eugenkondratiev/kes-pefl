@@ -23,12 +23,12 @@ export const ClubsProvider = ({ children }) => {
 
     const { loading:nationsLOading, nations, getNation} = useContext(NationsContext)
 
-console.log("getNation - ",getNation, nationsLOading, nations,);
+// console.log("getNation - ",getNation, nationsLOading, nations,);
 
     const transformClubsArray = (_) => {
         const clubsArray = [];
         [..._].forEach(({ _id, name, z, ffId, nominal }) => {
-            if (+ffId > 0 ) clubsArray[+_id] = [name, z, getNation(ffId)[0], nominal];
+            if (+ffId > 0 ) clubsArray[+_id] = [name, z, ffId, nominal];
         })
         return clubsArray
     }

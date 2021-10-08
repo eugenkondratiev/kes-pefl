@@ -5,6 +5,7 @@ import { ClubsContext } from '../../context/clubs-context';
 import LayerPage from '../LayerPage';
 import { Spin } from 'antd';
 import Block from '../../components/Block';
+import ClubLabel from '../../components/ClubLabel';
 function HomePage(props) {
 
     const nationsContext = useContext(NationsContext);
@@ -12,8 +13,8 @@ function HomePage(props) {
 
     return (
         <LayerPage mainCaption="Добро пожаловать">
-                Тестовый контент
-            <SvgPlayerIcon height="1em" width="1em" />
+            Тестовый контент
+            <SvgPlayerIcon height="4em" width="4em" />
             <Block>
 
                 {nationsContext.loading && <Spin />}
@@ -26,7 +27,18 @@ function HomePage(props) {
                 {clubsContext.loading && <Spin />}
 
                 {String(clubsContext.loading)}
-                {!clubsContext.loading && <span>{clubsContext.clubs && JSON.stringify(clubsContext.getClub(148))}</span>}
+                {!clubsContext.loading && clubsContext.clubs && <div>
+
+
+
+                    <span>{JSON.stringify(clubsContext.getClub(148))}</span>
+                    <span>{<ClubLabel _id="148" className="club148"/>}</span>
+                    <span>{<ClubLabel _id="11" />}</span>
+                    <span>{<ClubLabel />}</span>
+                    <span>{<ClubLabel _id="-1" />}</span>
+                </div>
+                }
+                
 
             </Block>
         </LayerPage>

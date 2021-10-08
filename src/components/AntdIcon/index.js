@@ -6,7 +6,7 @@ function AntdIcon({node,...rest}) {
     return (
         <span role="img" aria-label="user" className="anticon anticon-user">
             <Node 
-            viewBox="20 20 388 411" 
+            viewBox="50 0 400 480" 
             focusable="false" 
             className="" 
             data-icon="user" 
