@@ -36,10 +36,15 @@ export const CupsProvider = ({ children }) => {
     }
 
 
-    const getIntercups = _id => {
+    const getIntercups = () => {
         // console.log("getCup  done ", _id);
         return intercups
     }
+    const getIntercupData = _id => {
+        // console.log("getCup  done ", _id);
+        return intercups[_id]
+    }
+
 
     // const { loading:nationsLOading, nations, getNation} = useContext(NationsContext)
 
@@ -99,14 +104,22 @@ export const CupsProvider = ({ children }) => {
     }
 
     const transformIntercupsArray = (_) => {
-        const intercupsArray = [];
-        [..._].forEach(({ _id, name }) => {
+        const intercupsArray = {};
+        [..._].forEach(({ _id, name: _name }) => {
             const [type, sFfId, season] = _id.split('_');
-            const ffId = +sFfId;
+            const ecId = +sFfId;
 
 
-            if (+ffId > 0) {
-                ;
+            if (+ecId > 0) {
+                if (intercupsArray[ecId]) {
+                    intercupsArray[ecId].s.push(season);
+
+                } else {
+                    intercupsArray[ecId] = {
+                        name: _name,
+                        s: [season]
+                    };
+                };
             }
         })
         return intercupsArray
@@ -115,16 +128,16 @@ export const CupsProvider = ({ children }) => {
 
     const getAllCups = async () => {
         setLoading(true);
-        if (localStorage.cups  && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
-            // if (localStorage.cups && localStorage.intercups && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
+        // if (localStorage.cups  && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
+        if (localStorage.cups && localStorage.intercups && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
             console.log("localStorage.cups - ", localStorage.cups);
             console.log("localStorage.intercups - ", localStorage.intercups);
             const cupsArray = JSON.parse(localStorage.cups);
-            // const intercupsArray = JSON.parse(localStorage.intercups);
+            const intercupsArray = JSON.parse(localStorage.intercups);
             console.log("#### get cups from localStorage - ", cupsArray);
-            // console.log("#### get cups from localStorage - ", intercupsArray);
+            console.log("#### get cups from localStorage - ", intercupsArray);
             setCups((prev) => cupsArray)
-            // setIntercups((prev) => intercupsArray)
+            setIntercups((prev) => intercupsArray)
             setLoading(prev => false);
         } else {
 
@@ -139,17 +152,24 @@ export const CupsProvider = ({ children }) => {
                 console.log("#### context Cups responseExtras -  ", responseExtras);
                 console.log('#### -  responseExtras.error ? null : responseExtras.data - ', responseExtras.error ? null : responseExtras.data);
 
+                const responseIntercups = await fetchOwnApi(intercupIds_REF);
+                console.log("#### context Cups responseIntercups -  ", responseIntercups);
+                console.log('#### -  responseIntercups.error ? null : responseIntercups.data - ', responseIntercups.error ? null : responseIntercups.data);
+
+
                 setCups((prev) => {
                     const onlyCupsArray = transformCupsArray(response.data);
                     const cupsArray = transformExtracupsArray(responseExtras.data, onlyCupsArray);
 
-                    // const intercupsArray = transformIntercupsArray(responseExtras.data, cupsArray);
+                    const intercupsArray = transformIntercupsArray(responseIntercups.data);
 
                     // console.log("transformCupsArray(response.data) -", cupsArray);
                     // console.log("transformCIntercupsArray(response.data) -", intercupsArray);
                     console.log("#### - cupsArray - ", cupsArray);
+                    console.log("#### - intercupsArray - ", intercupsArray);
 
                     localStorage.setItem("cups", JSON.stringify(cupsArray))
+                    localStorage.setItem("intercups", JSON.stringify(intercupsArray))
                     localStorage.setItem("cupsLastUpdate", JSON.stringify(Date.now()))
 
                     return response.error
@@ -180,11 +200,13 @@ export const CupsProvider = ({ children }) => {
         <CupsContext.Provider
             value={{
                 cups,
+                intercups,
                 loading,
                 getCups,
                 getFfCups,
                 getFfCupData,
-                getIntercups
+                getIntercups,
+                getIntercupData
             }}
         >
             {children}

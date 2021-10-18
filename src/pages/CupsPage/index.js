@@ -19,9 +19,10 @@ function CupsPage(props) {
 
 
 
-                    <span>{JSON.stringify(cupsContext.getFfCupData(93, 'cup'))}</span>
-                    <span>{JSON.stringify(cupsContext.getFfCupData(93, 'supercup'))}</span>
-                    <span>{JSON.stringify(cupsContext.getFfCupData(172, 'extracup'))}</span>
+                    <div>{JSON.stringify(cupsContext.getFfCupData(93, 'cup'))}</div>
+                    <div>{JSON.stringify(cupsContext.getFfCupData(93, 'supercup'))}</div>
+                    <div>{JSON.stringify(cupsContext.getFfCupData(172, 'extracup'))}</div>
+                    <div>{JSON.stringify(cupsContext.getIntercupData(231))}</div>
                 </div>
                 }
 

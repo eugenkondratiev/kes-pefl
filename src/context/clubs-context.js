@@ -17,7 +17,7 @@ export const ClubsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
 
     const getClub = _id => {
-        console.log("getClub  done ", _id);
+        // console.log("getClub  done ", _id);
         return clubs[+_id]
     }
 
@@ -38,23 +38,23 @@ export const ClubsProvider = ({ children }) => {
         if (!nations) return
         setLoading(true);
         if (localStorage.clubs && localStorage.clubsLastUpdate && ( (Number(Date.now()) - Number(localStorage.getItem("clubsLastUpdate")) ) < 86400*1000*61)) {
-            console.log("localStorage.clubs - ", localStorage.clubs);
+            // console.log("localStorage.clubs - ", localStorage.clubs);
             const clubsArray = JSON.parse(localStorage.clubs);
-            console.log("#### get clubs from localStorage - ", clubsArray);
+            // console.log("#### get clubs from localStorage - ", clubsArray);
             setClubs((prev) => clubsArray)
             setLoading(prev => false);
         } else {
 
             try {
                 const response = await fetchOwnApi(ClubS_REF);
-                console.log("#### context Clubs response -  ", response);
-                console.log('#### -  response.error ? null : response.data - ', response.error ? null : response.data);
+                // console.log("#### context Clubs response -  ", response);
+                // console.log('#### -  response.error ? null : response.data - ', response.error ? null : response.data);
 
                 setClubs((prev) => {
-                    console.log("#### - response.data - ", response.data);
+                    // console.log("#### - response.data - ", response.data);
                     const clubsArray = transformClubsArray(response.data);
                     
-                    console.log("transformClubsArray(response.data) -", clubsArray);
+                    // console.log("transformClubsArray(response.data) -", clubsArray);
 
                         localStorage.setItem("clubs", JSON.stringify(clubsArray))
                         localStorage.setItem("clubsLastUpdate", JSON.stringify(Date.now()))

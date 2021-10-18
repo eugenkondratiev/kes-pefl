@@ -38,7 +38,7 @@ exports.handler = async function (event, context) {
                     "cups",// _type,
                     _id ? { "_id": _id }
                         : _type === 'ecs'
-                            ? { _id: { $regex: /^ec/ } }
+                            ? { _id: { $regex: /^ec_/ } }
                             : _type === 'cupids'
                                 ? { _id: { $regex: /cup_/ } }
                                 : _type === 'extras' ? { t: { $gt: 1900 } } : {},
