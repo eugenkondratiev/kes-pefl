@@ -14,6 +14,7 @@ function SiderMenu(props) {
 
     const [isCollapsed, setIsCollapsed] = useState(false)
     const [isOnBreakpoint, setIsOnBreakpoint] = useState(false)
+    console.log("Sider manu rendered");
 
     return (
         <Sider className={stl["menu-sider"]}

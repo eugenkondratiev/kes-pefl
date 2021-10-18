@@ -6,6 +6,8 @@ import LayerPage from '../LayerPage';
 import { Spin } from 'antd';
 import Block from '../../components/Block';
 import ClubLabel from '../../components/ClubLabel';
+
+
 function HomePage(props) {
 
     const nationsContext = useContext(NationsContext);
@@ -32,7 +34,7 @@ function HomePage(props) {
 
 
                     <span>{JSON.stringify(clubsContext.getClub(148))}</span>
-                    <span>{<ClubLabel _id="148" className="club148"/>}</span>
+                    <span>{<ClubLabel _id="148" />}</span>
                     <span>{<ClubLabel _id="11" />}</span>
                     <span>{<ClubLabel />}</span>
                     <span>{<ClubLabel _id="-1" />}</span>

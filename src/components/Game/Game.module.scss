@@ -1,0 +1,8 @@
+.root {
+    display:flex;
+    & .firstTeam,
+    & .secondTeam
+     {
+        flex: 1 1 30ch
+    }
+}

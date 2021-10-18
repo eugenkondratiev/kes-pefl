@@ -4,6 +4,7 @@ const NETLIFY_FUNCTIONS  = require('./constants').NETLIFY_FUNCTIONS;
 
 module.exports = (_path, functionName = 'api') => {
     const pathParameters = _path.replace(`${NETLIFY_FUNCTIONS}`, "").split("?")[0].split('/')
+    console.log("pathParameters - ", pathParameters);
     return pathParameters[0] === functionName
         ? pathParameters[1] ? pathParameters.slice(1) : []
         : [];
