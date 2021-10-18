@@ -31,7 +31,7 @@ exports.handler = async function (event, context) {
 
         let _resp = null
 
-        if (_type === 'cup' || _type === 'ids' || _type === 'ecs' || _type === 'extras') {
+        if (_type === 'cup' || _type === 'cupids' || _type === 'ecs' || _type === 'extras') {
             try {
                 // console.log("nations query - ", _query);
                 const answer = await getMongoData(
@@ -39,9 +39,11 @@ exports.handler = async function (event, context) {
                     _id ? { "_id": _id }
                         : _type === 'ecs'
                             ? { _id: { $regex: /^ec/ } }
-                            : _type === 'extras' ? { t: { $gt: 1900 } } : {},
+                            : _type === 'cupids'
+                                ? { _id: { $regex: /cup_/ } }
+                                : _type === 'extras' ? { t: { $gt: 1900 } } : {},
                     {},
-                    _type === 'ids'
+                    _type === 'cupids'
                         ? { _id: 1 }
                         : _type === 'ecs' || _type === 'extras' ? { _id: 1, name: 1 } : {}
                 );
