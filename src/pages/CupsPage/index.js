@@ -8,7 +8,9 @@ import testCupIreland from '../../assets/tests/cup_93_19';
 import { NationsContext } from '../../context/nation-context';
 import CupsSelector from '../../components/CupSelector';
 import Game from '../../components/Game';
+import CupRound from '../../components/CupRound';
 import { ClubsContext } from '../../context/clubs-context';
+import { getFlagById } from '../../utils/pefl-stings';
 
 const { Option } = Select;
 
@@ -90,8 +92,11 @@ function CupsPage(props) {
     //     setCupId(`${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`);
     // }, [cupType, ffId, cupSeason])
 
-
-
+    const sortedRounds = _ => {
+        const sorted = [..._].reverse()
+        console.log("sorted  - ", sorted);
+        return sorted
+    }
 
 
     console.log("#### cupPage rendered !!!");
@@ -99,16 +104,34 @@ function CupsPage(props) {
     return (
         <LayerPage mainCaption="История кубков">
             <CupsSelector />
+            <div>
+                <div >
 
+                    <h4>{testCupIreland.name}</h4>
+                    <div>{testCupIreland.season}</div>
+                    Раздел в разработке.
+                    Пока тесты на ирландком кубке
+                </div>
+                <img alt="flag" style={{ float: "right" }} src={getFlagById(93)} />
+                <img alt="flag" style={{ float: "right" }} src={getFlagById(239)} />
+            </div>
             <Block header={testCupIreland._id}>
                 {/* {JSON.stringify(testCupIreland, null, " ")} */}
                 {testCupIreland.name}
                 {testCupIreland.season}
-                <Game game={testCupIreland.rounds[0].games[0]}/>
-                <Game game={testCupIreland.rounds[0].games[1]}/>
-                <Game game={testCupIreland.rounds[0].games[2]}/>
+                <img alt="flag" style={{ float: "right" }} src={getFlagById(93)} />
+                <img alt="flag" style={{ float: "right" }} src={getFlagById(239)} />
+                Раздел в разработке.
+                Пока тесты на ирландком кубке
                 {/* {testCupIreland.rounds[0].games[0]} */}
+
             </Block>
+
+            {/* <CupRound round={testCupIreland.rounds[0]} /> */}
+            {/* <CupRound round={testCupIreland.rounds[1]} /> */}
+            {sortedRounds(testCupIreland.rounds).map((round, index) => {
+                return <CupRound key={index} round={round} />
+            })}
             {/* <Block header="">
                 Раздел в разработке
                 {cupsContext.loading && <Spin />}

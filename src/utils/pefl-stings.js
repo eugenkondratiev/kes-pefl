@@ -6,7 +6,8 @@ const checkId = (_id) => {
 }
 
 export const getClubLogoById = (_id) => checkId(_id) ? `${peflUrl}system/img/club/${+_id}.gif` : undefined
-export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/mod/${+_ff}.gif` : undefined
+export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/${+_ff}.gif` : undefined
+// export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/mod/${+_ff}.gif` : undefined
 
 export const getClubRef = (_id, z) => checkId(_id)
     ? `${peflUrl}plug.php?p=refl&t=k&j=${_id}&z=${z}`

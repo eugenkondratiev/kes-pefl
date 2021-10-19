@@ -8,7 +8,7 @@ function ClubLabel({ _id, children}) {
     const { getClub } = useContext(ClubsContext);
 
     const club = _id && getClub(_id);
-    console.log("#### club - ", _id, club);
+    // console.log("#### club - ", _id, club);
     if (!club) return null
     const [name, z, ff] = club;
 

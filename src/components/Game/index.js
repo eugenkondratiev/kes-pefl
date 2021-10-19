@@ -6,9 +6,11 @@ import ClubLabel from '../ClubLabel';
 import { ClubsContext } from '../../context/clubs-context';
 
 function Game({ game, ...rest }) {
-    const { team1, team2, firstGame, lastGame } = game;
-
+    // console.log("##### game - ", game);
     const { loading: clubsLoading, clubs } = useContext(ClubsContext)
+    if (!game) return (<div></div>)
+    const { team1, team2, firstGame, lastGame } = game;
+    
 
     return (
         <div className={stl.root}>
@@ -16,9 +18,9 @@ function Game({ game, ...rest }) {
                 {clubs && <ClubLabel _id={team1.j} />}
             </div>
             <div className={stl.gameScore}>
-                <GameScore _game={lastGame}/>
+                <GameScore _game={lastGame} />
 
-                {firstGame && <GameScore first _game={firstGame}/>}
+                {firstGame && <GameScore first _game={firstGame} />}
             </div>
             <div className={stl.secondTeam}>
                 {clubs && <ClubLabel _id={team2.j} />}
