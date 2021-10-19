@@ -109,7 +109,7 @@ function CupsPage(props) {
                 <Game game={testCupIreland.rounds[0].games[2]}/>
                 {/* {testCupIreland.rounds[0].games[0]} */}
             </Block>
-            <Block header="">
+            {/* <Block header="">
                 Раздел в разработке
                 {cupsContext.loading && <Spin />}
 
@@ -122,12 +122,11 @@ function CupsPage(props) {
                     <div>{JSON.stringify(cupsContext.getFfCupData(93, 'supercup'))}</div>
                     <div>{JSON.stringify(cupsContext.getFfCupData(172, 'extracup'))}</div>
                     <div>{JSON.stringify(cupsContext.getIntercupData(231))}</div>
-                    {/* <div>{JSON.stringify(cupsContext.getFfCupData(93, 'cup').rounds[0].games[0])}</div> */}
 
                 </div>
                 }
 
-            </Block>
+            </Block> */}
         </LayerPage>
     );
 }

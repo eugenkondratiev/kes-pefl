@@ -1,8 +1,36 @@
 .root {
-    display:flex;
+    display: grid;
+    border-radius: 2px;
+    box-shadow: 1px 1px 4px 2px lightgrey;
+    margin: 5px;
+
     & .firstTeam,
-    & .secondTeam
-     {
+    & .secondTeam {
         flex: 1 1 30ch
+    }
+
+    & .firstTeam {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 1;
+        grid-row-end: 1;
+    }
+
+    & .secondTeam {
+        grid-column-start: 1;
+        grid-column-end: 1;
+        grid-row-start: 2;
+        grid-row-end: 2;
+    }
+
+    & .gameScore {
+        grid-column-start: 2;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
