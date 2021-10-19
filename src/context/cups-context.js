@@ -26,13 +26,16 @@ export const CupsProvider = ({ children }) => {
         return cups
     }
     const getFfCups = _ffId => {
-        console.log("getFfCups  done ", _ffId);
-        return cups[+_ffId]
+        // console.log("getFfCups  done ", _ffId);
+        const intFF = +_ffId;
+        return cups[intFF > 2000 ? intFF - 2000 : intFF]
     }
 
     const getFfCupData = (_ffId, type) => {
-        console.log("getFfCupData  done ", _ffId, type);
-        return cups[+_ffId][type]
+        // console.log("getFfCupData  done ", _ffId, type);
+        const intFF = +_ffId;
+
+        return cups[intFF > 2000 ? intFF - 2000 : intFF][type]
     }
 
 
@@ -130,12 +133,12 @@ export const CupsProvider = ({ children }) => {
         setLoading(true);
         // if (localStorage.cups  && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
         if (localStorage.cups && localStorage.intercups && localStorage.cupsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("cupsLastUpdate"))) < 86400 * 1000 * 61)) {
-            console.log("localStorage.cups - ", localStorage.cups);
-            console.log("localStorage.intercups - ", localStorage.intercups);
+            // console.log("localStorage.cups - ", localStorage.cups);
+            // console.log("localStorage.intercups - ", localStorage.intercups);
             const cupsArray = JSON.parse(localStorage.cups);
             const intercupsArray = JSON.parse(localStorage.intercups);
-            console.log("#### get cups from localStorage - ", cupsArray);
-            console.log("#### get cups from localStorage - ", intercupsArray);
+            // console.log("#### get cups from localStorage - ", cupsArray);
+            // console.log("#### get cups from localStorage - ", intercupsArray);
             setCups((prev) => cupsArray)
             setIntercups((prev) => intercupsArray)
             setLoading(prev => false);
