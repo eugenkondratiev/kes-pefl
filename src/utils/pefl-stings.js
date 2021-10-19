@@ -25,7 +25,7 @@ export const getTvRef = (_j, z) => checkId(_j)
 
 //http://pefl.ru/heatmaps2.html?j=1231952&z=c68d95df9a45571239260cddf3dfcba6
 export const getHeatmapRef = (_j, z) => checkId(_j)
-    ? `${peflUrl}pefl.ru/heatmaps.html?j=${_j}&z=${z}`
+    ? `${peflUrl}/heatmaps.html?j=${_j}&z=${z}`
     : undefined
 
 

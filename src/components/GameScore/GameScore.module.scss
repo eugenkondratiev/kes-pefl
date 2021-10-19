@@ -1,0 +1,24 @@
+.root{
+    padding: 0 8px;
+    min-width: 14ch;
+    text-align: right;
+    & .game-score {
+        text-align: center;
+        display: inline-block;
+        min-width: 5ch;
+    }
+    & .game-tv{
+        height: 1.1rem;
+        & img {
+            height: 1.2rem;
+        }
+    }
+    
+    & .game-heatmap{
+        height: 1.1rem;
+
+        & img {
+            height: 1.2rem;
+        }
+    }
+}
