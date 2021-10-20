@@ -6,7 +6,7 @@ const checkId = (_id) => {
 }
 
 export const getClubLogoById = (_id) => checkId(_id)
-    ? `https://raw.githubusercontent.com/eugenkondratiev/kes-pefl/master/src/assets/img/clubs/${+_id}.gif`
+    ? `https://raw.githubusercontent.com/eugenkondratiev/kes-pefl/master/src/assets/img/clubs/${+_id}.jpg`
     : undefined
 // export const getClubLogoById = (_id) => checkId(_id) ? `${peflUrl}system/img/club/${+_id}.gif` : undefined
 
