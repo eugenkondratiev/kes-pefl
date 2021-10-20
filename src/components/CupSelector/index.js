@@ -36,7 +36,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
 
     useEffect(() => {
         if (!cups) return;
-        console.log("UseEffect cups");
+        // console.log("UseEffect cups");
         const _federations = cups.reduce((acc, _ff, _ffId) => {
             // console.log(" #### OPTION ", _ffId, _ff, acc);
             if (!_ff) return acc
