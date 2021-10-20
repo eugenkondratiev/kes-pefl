@@ -53,7 +53,11 @@ function Cup({ _cupId, children, ...restprops }) {
                     <h4>{`Сезон ${cupData.season}`}</h4>
                     Раздел в разработке.
                 </div>
-                <img className={stl['cup-logo']} alt="flag" style={{ float: "right", width: "6em", height: "4em" }} src={getFlagById(cupData.t)} />
+                <img className={stl['cup-logo']}
+                    alt="flag"
+                    style={{ float: "right", width: "6em", height: "4em" }}
+                    src={getFlagById(cupData.t > 2000 ? cupData.t - 2000 : cupData.t)}
+                />
             </div>
             {cupData && cupID && sortedRounds(cupData.rounds).map((round, index) => {
                 return <CupRound key={index} round={round} />

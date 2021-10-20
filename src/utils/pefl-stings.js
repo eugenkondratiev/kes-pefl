@@ -6,33 +6,31 @@ const checkId = (_id) => {
 }
 
 export const getClubLogoById = (_id) => checkId(_id)
-    ? `https://github.com/eugenkondratiev/kes-pefl/blob/master/src/assets/img/clubs/${+_id}.gif`
+    ? `https://raw.githubusercontent.com/eugenkondratiev/kes-pefl/master/src/assets/img/clubs/${+_id}.gif`
     : undefined
 // export const getClubLogoById = (_id) => checkId(_id) ? `${peflUrl}system/img/club/${+_id}.gif` : undefined
 
-// https://github.com/eugenkondratiev/kes-pefl/blob/master/src/assets/svg/couple-of-football-cones-26338.svg
 
 // export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/${+_ff}.gif` : undefined
 export const getFlagById = (_ff) => checkId(_ff) ? `https://mylene.net.ru/pefl/nations/img/flags/mod/${+_ff}.gif` : undefined
+export const getIntercupLogoById = (_ff) => checkId(_ff)
+    ? `https://raw.githubusercontent.com/eugenkondratiev/kes-pefl/master/src/assets/img/cups/${+_ff}.gif`
+    : undefined
 
-// export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/mod/${+_ff}.gif` : undefined
 
 export const getClubRef = (_id, z) => checkId(_id)
     ? `${peflUrl}plug.php?p=refl&t=k&j=${_id}&z=${z}`
     : undefined
 
-//http://pefl.ru/plug.php?p=refl&t=if&j=1231954&z=f8e8f6fd3b04665640e45de652aa430b
 export const getGameRef = (_j, z) => checkId(_j)
     ? `${peflUrl}plug.php?p=refl&t=if&j=${_j}&z=${z}`
     : undefined
 
-// http://pefl.ru/skins/refl/img/i3.gif
-// http://pefl.ru/tv/#/j=1231952&z=c68d95df9a45571239260cddf3dfcba6
+
 export const getTvRef = (_j, z) => checkId(_j)
     ? `${peflUrl}tv/#/j=${_j}&z=${z}`
     : undefined
 
-//http://pefl.ru/heatmaps2.html?j=1231952&z=c68d95df9a45571239260cddf3dfcba6
 export const getHeatmapRef = (_j, z) => checkId(_j)
     ? `${peflUrl}/heatmaps.html?j=${_j}&z=${z}`
     : undefined
