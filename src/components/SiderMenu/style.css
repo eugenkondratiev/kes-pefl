@@ -15,3 +15,7 @@ ul.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) li.ant-menu-item.ant-me
 ul.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) li.ant-menu-item.ant-menu-item-selected .anticon+span>a {
     color: #4a776c;
 }
+
+span.ant-layout-sider-zero-width-trigger {
+    top: 75px;
+}

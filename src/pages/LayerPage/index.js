@@ -19,7 +19,10 @@ function LayerPage(props) {
           //   color: "lightgray"
           // }}
     >
+      <h2>
           {props.mainCaption || null}
+      </h2>
+        
         </Header>
         <Content className={stl["layout-content-background"]}>
           <div>
