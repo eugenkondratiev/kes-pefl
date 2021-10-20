@@ -25,7 +25,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
 
     const [cupSeason, setCupSeason] = useState(null);
 
-    const [cupData, setCupData] = useState(null);
+    // const [cupData, setCupData] = useState(null);
 
     const [federations, setFederations] = useState(null);
     const [ffCups, setFfCups] = useState(null);
@@ -44,14 +44,14 @@ function CupsSelector({onUpdateId, ...restprops}) {
             if (nation[2]) acc.push([_ffId, nation[0]])
             return acc
         }, [])
-        console.log(" ######### - federations", federations);
+        // console.log(" ######### - federations", federations);
         setFederations(_federations.sort((a, b) => a[1].localeCompare(b[1])))
     }, [cups])
 
     useEffect(() => {
         if (!cups || !ffId) return;
         const ffCups = getFfCups(ffId);
-        console.log("getFfCups --- ", ffCups);
+        // console.log("getFfCups --- ", ffCups);
         const ffCupsArray = [];
         if (ffCups["cup"]) ffCupsArray.push(["cup", "Кубок"])
         if (ffCups["supercup"]) ffCupsArray.push(["supercup", "Суперубок"])
@@ -69,7 +69,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
         if (_seasons && _seasons.s) {
 
             setSeasonsList(_seasons.s.sort((a, b) => +b - +a));
-            console.log("getFfCupData --- ", _seasons, seasonsList);
+            // console.log("getFfCupData --- ", _seasons, seasonsList);
             if (!_seasons.s.includes(cupSeason)) setCupSeason(_seasons.s[0])
         }
 
@@ -82,23 +82,23 @@ function CupsSelector({onUpdateId, ...restprops}) {
 
     useEffect(() => {
         const newId  = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
-        console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
+        // console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
 
         setCupId(newId);
         if (cupType && ffId && cupSeason) {
-            console.log("#### newId   to Cups - " , newId);
+            // console.log("#### newId   to Cups - " , newId);
             onUpdateId(newId)
         }
     }, [cupType, ffId, cupSeason])
 
     const ffSelectHandler = (value) => {
-        console.log(`selected  FF ${value}`);
+        // console.log(`selected  FF ${value}`);
         setFfId(value);
 
     }
 
     const typeSelectHandler = (value) => {
-        console.log(`selected  type ${value}`);
+        // console.log(`selected  type ${value}`);
         // setCupTupe(value === "extracup" ? "cup" : value);
         setCupTupe(value);
         const intFF = +ffId;
@@ -107,7 +107,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
         if (value !== "extracup" && intFF > 2000) setFfId(intFF - 2000)
     }
     const seasonChangeHandler = (value) => {
-        console.log(`selected  season ${value}`);
+        // console.log(`selected  season ${value}`);
         setCupSeason(value)
     }
 
@@ -115,11 +115,12 @@ function CupsSelector({onUpdateId, ...restprops}) {
                 <Block className={stl.root} header="Выбор турнира">
                 {/* {JSON.stringify(federations)} */}
                 {!nationsLoading && nations && cups && <form>
-                    <div>{cupId && cupId}</div>
+                    {/* <div>{cupId && cupId}</div> */}
                     <Select
                         style={{ width: "25ch" }}
                         loading={cupsLoading}
                         onChange={ffSelectHandler}
+                        placeholder="Выбор федерации"
                     >
                         {
                             !cupsLoading && federations && federations.map((_ff) => {
@@ -134,6 +135,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
                         loading={cupsLoading}
                         onChange={typeSelectHandler}
                         // defaultValue="cup"
+                        placeholder="Выбор турнира"
                         style={{ width: "25ch" }}
                     >
                         {
@@ -146,6 +148,8 @@ function CupsSelector({onUpdateId, ...restprops}) {
                         style={{ width: "8ch" }}
                         value={cupSeason}
                         onChange={seasonChangeHandler}
+                        placeholder="Выбор сезона"
+
                     >
                         {
                             !cupsLoading && seasonsList && seasonsList.map((season) => {
