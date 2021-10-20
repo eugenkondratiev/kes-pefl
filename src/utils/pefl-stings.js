@@ -5,8 +5,16 @@ const checkId = (_id) => {
         : undefined
 }
 
-export const getClubLogoById = (_id) => checkId(_id) ? `${peflUrl}system/img/club/${+_id}.gif` : undefined
-export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/${+_ff}.gif` : undefined
+export const getClubLogoById = (_id) => checkId(_id)
+    ? `https://github.com/eugenkondratiev/kes-pefl/blob/master/src/assets/img/clubs/${+_id}.gif`
+    : undefined
+// export const getClubLogoById = (_id) => checkId(_id) ? `${peflUrl}system/img/club/${+_id}.gif` : undefined
+
+// https://github.com/eugenkondratiev/kes-pefl/blob/master/src/assets/svg/couple-of-football-cones-26338.svg
+
+// export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/${+_ff}.gif` : undefined
+export const getFlagById = (_ff) => checkId(_ff) ? `https://mylene.net.ru/pefl/nations/img/flags/mod/${+_ff}.gif` : undefined
+
 // export const getFlagById = (_ff) => checkId(_ff) ? `${peflUrl}system/img/flags/mod/${+_ff}.gif` : undefined
 
 export const getClubRef = (_id, z) => checkId(_id)
