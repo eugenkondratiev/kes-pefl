@@ -23,7 +23,7 @@ export const NationsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
 
     const getNation = _id => {
-        console.log("getNation  done ");
+        // console.log("getNation  done ");
         return nations[+_id]
     }
 

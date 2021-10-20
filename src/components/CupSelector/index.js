@@ -10,7 +10,7 @@ const { Option } = Select;
 
 
 
-function CupsSelector(props) {
+function CupsSelector({onUpdateId, ...restprops}) {
 
     const cupsContext = useContext(CupsContext);
     const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
@@ -68,7 +68,7 @@ function CupsSelector(props) {
 
         if (_seasons && _seasons.s) {
 
-            setSeasonsList(_seasons.s.sort((a, b) => +a - +b));
+            setSeasonsList(_seasons.s.sort((a, b) => +b - +a));
             console.log("getFfCupData --- ", _seasons, seasonsList);
             if (!_seasons.s.includes(cupSeason)) setCupSeason(_seasons.s[0])
         }
@@ -81,7 +81,14 @@ function CupsSelector(props) {
     }, [ffCups])
 
     useEffect(() => {
-        setCupId(`${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`);
+        const newId  = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
+        console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
+
+        setCupId(newId);
+        if (cupType && ffId && cupSeason) {
+            console.log("#### newId   to Cups - " , newId);
+            onUpdateId(newId)
+        }
     }, [cupType, ffId, cupSeason])
 
     const ffSelectHandler = (value) => {

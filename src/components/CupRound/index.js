@@ -4,7 +4,7 @@ import Game from '../Game';
 
 function CupRound({ round, ...rest }) {
     const { name, games } = round;
-    console.log("####round - ", round);
+    // console.log("####round - ", round);
     return (
         <Block header={name}>
             <Game />
