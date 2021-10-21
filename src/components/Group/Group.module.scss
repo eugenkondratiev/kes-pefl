@@ -1,2 +1,42 @@
 @import '../../assets/styles/global.scss';
 
+.root {
+    padding: 2px 4px;
+
+
+}
+
+div.group-table {
+    width: 100%;
+
+    & div.table-line:nth-child(2n-1) {
+        background-color: $primary;
+    }
+
+    & div.table-line {
+        display: flex;
+        align-items: center;
+
+
+        & div.table-cell {
+            height: fit-content;
+            min-width: 14ch;
+        }
+        & div.table-cell.club-logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        & div.table-smallcell {
+            height: fit-content;
+            min-width: 4ch;
+            display: flex;
+            align-items: center;
+        }
+
+        & div.team-name {
+            height: fit-content;
+        }
+    }
+
+}

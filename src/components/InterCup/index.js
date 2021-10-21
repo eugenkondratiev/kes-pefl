@@ -8,6 +8,7 @@ import CupRound from '../CupRound';
 import stl from './InterCup.module.scss';
 // import testCup from '../../assets/tests/cup_93_19'
 import testCup from '../../assets/tests/ec_231_18'
+import testCupGroups from '../../assets/tests/ecg_231_18'
 
 import useTimeout from '../../hooks/useTimeout';
 import Block from '../Block';
@@ -26,7 +27,8 @@ function InterCup({ _cupId, children, ...restprops }) {
 
     // const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID])
     const [isLoading, setIsLoading] = useState(true)
-    const [cupData, setcupData] = useState(true)
+    const [cupData, setcupData] = useState()
+    const [cupGroupsData, setcupGroupsData] = useState()
 
     let isError = false;
 
@@ -34,6 +36,7 @@ function InterCup({ _cupId, children, ...restprops }) {
     useTimeout(() => {
         setIsLoading(false);
         setcupData(testCup)
+        setcupGroupsData(testCupGroups)
         setCupID("ec_231_18 !!!!!")
     }, 2000)
 
@@ -93,10 +96,10 @@ function InterCup({ _cupId, children, ...restprops }) {
             <div>
                 {/* {JSON.stringify(cupData.rounds, null, " ")} */}
             </div>
-            {cupData && cupID && sortedRounds(cupData.rounds).map((round, index) => {
-                return round.groups ? round.groups.map(((group, groupIndex) => <Group key={group._id + index} groupData={cupData.groups[groupIndex]} />))
-                // return round.groups ? round.groups.map((group => <Group key={group._id + index} groupData={group} />))
-                    : <CupRound key={index} round={round} />
+            {cupData && cupID && sortedRounds(cupData.rounds).map((round, roundindex) => {
+                return round.groups ? round.groups.map(((group, groupIndex) => <Group key={group._id + roundindex} groupData={testCupGroups[group._id]} />))
+                    // return round.groups ? round.groups.map((group => <Group key={group._id + index} groupData={group} />))
+                    : <CupRound collapsed={round.name !== "Финал"} key={"CupRound" + roundindex} round={round} />
 
             })}
         </div>

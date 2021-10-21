@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import Header from '../Header';
 
 import stl from './Block.module.scss';
+import cn from 'classnames';
 
-function Block(props) {
+function Block({ header, collapsed, children, ...props }) {
+    const toggleCollapsed = useCallback(
+        () => {
+            setisCollapsed(prevCollapsed => !prevCollapsed)
+        }
+        , [])
+
+    const [isCollapsed, setisCollapsed] = useState(collapsed)
+
     return (
-        <section className={stl.root}>
-            <Header >{props.header || " OOOOOPS !!!"}</Header>
+        <section className={cn({ [stl.root]: true, [stl['collapsed-content']]: isCollapsed })}>
+            {/* <section className={stl.root}> */}
+            <Header
+
+                clickHeader={toggleCollapsed}
+            >{header || " OOOOOPS !!!"}</Header>
             <div className={stl.content}>
-                {props.children}
+                {children}
             </div>
         </section>
     );

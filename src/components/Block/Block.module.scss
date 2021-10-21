@@ -9,7 +9,7 @@
     // min-height: 15rem;
     display: flex;
     margin: 12px auto;
-    
+
     & .content {
         display: flex;
         justify-content: space-evenly;
@@ -24,4 +24,14 @@
     & header {
         flex-grow: 0;
     }
+    & h4 {
+        text-align: center;
+    }
+}
+
+.root.collapsed-content {
+    & .content {
+        display: none;
+    }
+
 }

@@ -48,8 +48,6 @@ function InterCupsPage(props) {
         <LayerPage mainCaption="История международных кубков">
 
             <Block header="Раздел в разработке">
-
-                Тут будет огонь, но не сейчас
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 

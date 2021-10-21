@@ -4,9 +4,9 @@ import stl from './ClubLabel.module.scss';
 import { getClubLogoById, getClubRef, getFlagById } from '../../utils/pefl-stings';
 import cn from 'classnames';
 
-function ClubLabel({ _id, children}) {
+function ClubLabel({ _id, label, children }) {
     const { getClub } = useContext(ClubsContext);
-
+    if (label) return <div className={stl["root"]} ><h4>Команда</h4></div>
     const club = _id && getClub(_id);
     // console.log("#### club - ", _id, club);
     if (!club) return null

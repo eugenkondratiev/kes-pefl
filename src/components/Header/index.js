@@ -1,8 +1,12 @@
 import React from 'react';
 import stl from './Header.module.scss';
-function Header(props) {
+function Header({clickHeader, ...props}) {
     return (
-        <header className={stl.root}>
+        <header 
+        title="Скрыть/показать содержание" 
+        className={stl.root}
+        onClick={()=>{clickHeader()}}
+        >
             {props.children || " - "}
         </header>
     );

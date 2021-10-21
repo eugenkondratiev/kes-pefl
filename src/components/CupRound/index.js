@@ -2,11 +2,11 @@ import React from 'react';
 import Block from '../Block';
 import Game from '../Game';
 
-function CupRound({ round, ...rest }) {
+function CupRound({ round, collapsed, ...rest }) {
     const { name, games } = round;
     // console.log("####round - ", round);
     return (
-        <Block header={name}>
+        <Block header={name} collapsed>
             <Game />
             {games && games.map((game, index) => {
                 if (game) return <Game key={index} game={game} />
