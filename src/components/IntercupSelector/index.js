@@ -10,126 +10,120 @@ const { Option } = Select;
 
 
 
-function IntercupsSelector({onUpdateId, ...restprops}) {
+function IntercupsSelector({ onUpdateId, ...restprops }) {
 
     const cupsContext = useContext(CupsContext);
-    const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
+    const { loading: cupsLoading, intercups: _cups, getIntercupData, getIntercups } = cupsContext;
 
     const { loading: nationsLoading, getNation, nations } = useContext(NationsContext);
 
 
     const [cupId, setCupId] = useState(null);
-    const [ffId, setFfId] = useState(null);
 
-    const [cupType, setCupTupe] = useState(null);
 
+    const [intercupId, setintercupId] = useState(null);
     const [cupSeason, setCupSeason] = useState(null);
 
     // const [cupData, setCupData] = useState(null);
 
-    const [federations, setFederations] = useState(null);
-    const [ffCups, setFfCups] = useState(null);
+    const [intercups, setIntercups] = useState(null);
     const [seasonsList, setSeasonsList] = useState(null);
 
 
     const typeRef = useRef();
 
     useEffect(() => {
-        if (!cups) return;
-        // console.log("UseEffect cups");
-        const _federations = cups.reduce((acc, _ff, _ffId) => {
-            // console.log(" #### OPTION ", _ffId, _ff, acc);
-            if (!_ff) return acc
-            const nation = getNation(_ffId);
-            if (nation[2]) acc.push([_ffId, nation[0]])
-            return acc
-        }, [])
-        // console.log(" ######### - federations", federations);
-        setFederations(_federations.sort((a, b) => a[1].localeCompare(b[1])))
-    }, [cups])
+        if (!_cups) return;
+        console.log("useEffect cups", _cups);
+
+        // const _intercups = cups.reduce((acc, _intercup, _intercupId) => {
+        //     // console.log(" #### OPTION ", _intercupId, _intercup, acc);
+        //     if (!_intercup) return acc
+        //     const nation = getNation(_intercupId);
+        //     if (nation[2]) acc.push([_intercupId, nation[0]])
+        //     return acc
+        // }, [])
+        const _intercups = Object.entries(_cups)
+            .map(intercup => [intercup[0], intercup[1].name])
+            .sort((a, b) => a[1].localeCompare(b[1]))
+        console.log("_intercups -", _intercups);
+        // console.log(" ######### - intercups", intercups);
+        setIntercups(_intercups)
+    }, [_cups])
+
+    // useEffect(() => {
+    //     if (!cups || !intercupId) return;
+    //     const intercupCups = getIntercupData(intercupId);
+    //     // console.log("getintercupCups --- ", intercupCups);
+    //     const intercupCupsArray = [];
+    //     if (intercupCups["cup"]) intercupCupsArray.push(["cup", "Кубок"])
+    //     if (intercupCups["supercup"]) intercupCupsArray.push(["supercup", "Суперубок"])
+    //     if (intercupCups["extracup"]) intercupCupsArray.push(["extracup", intercupCups["extracup"].name])
+    //     setintercupCups(intercupCupsArray);
+
+    // }, [intercupId]);
 
     useEffect(() => {
-        if (!cups || !ffId) return;
-        const ffCups = getFfCups(ffId);
-        // console.log("getFfCups --- ", ffCups);
-        const ffCupsArray = [];
-        if (ffCups["cup"]) ffCupsArray.push(["cup", "Кубок"])
-        if (ffCups["supercup"]) ffCupsArray.push(["supercup", "Суперубок"])
-        if (ffCups["extracup"]) ffCupsArray.push(["extracup", ffCups["extracup"].name])
-        setFfCups(ffCupsArray);
-
-    }, [ffId]);
-
-    useEffect(() => {
-        if (!cups || !cupType || !ffId) return;
-        const _seasons = getFfCupData(ffId, cupType);
+        if (!_cups || !intercupId) return;
+        const _intercup = getIntercupData(intercupId);
         // const seasonsArray = [];
 
 
-        if (_seasons && _seasons.s) {
+        if (_intercup && _intercup.s) {
 
-            setSeasonsList(_seasons.s.sort((a, b) => +b - +a));
-            // console.log("getFfCupData --- ", _seasons, seasonsList);
-            if (!_seasons.s.includes(cupSeason)) setCupSeason(_seasons.s[0])
+            setSeasonsList(_intercup.s.sort((a, b) => +b - +a));
+            // console.log("getintercupCupData --- ", _seasons, seasonsList);
+            if (!_intercup.s.includes(cupSeason)) setCupSeason(_intercup.s[0])
         }
 
-    }, [ffId, cupType]);
+    }, [intercupId]);
 
+
+    // useEffect(() => {
+    //     if (cupType) setCupTupe('cup');
+    // }, [intercupCups])
 
     useEffect(() => {
-        if (cupType) setCupTupe('cup');
-    }, [ffCups])
-
-    useEffect(() => {
-        const newId  = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
-        // console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
+        const newId = `ec_${intercupId}_${cupSeason}`;
+        // console.log("#### newId   cupType, intercupId, cupSeason- " , newId, cupType, intercupId, cupSeason);
 
         setCupId(newId);
-        if (cupType && ffId && cupSeason) {
-            // console.log("#### newId   to Cups - " , newId);
+        if (intercupId && cupSeason) {
+            console.log("#### newId   to Cups - ", newId);
             onUpdateId(newId)
         }
-    }, [cupType, ffId, cupSeason])
+    }, [intercupId, cupSeason])
 
-    const ffSelectHandler = (value) => {
-        // console.log(`selected  FF ${value}`);
-        setFfId(value);
+    const intercupSelectHandler = (value) => {
+        // console.log(`selected  intercup ${value}`);
+        setintercupId(value);
 
     }
 
-    const typeSelectHandler = (value) => {
-        // console.log(`selected  type ${value}`);
-        // setCupTupe(value === "extracup" ? "cup" : value);
-        setCupTupe(value);
-        const intFF = +ffId;
-
-        if (value === "extracup" && intFF < 2000) setFfId(intFF + 2000)
-        if (value !== "extracup" && intFF > 2000) setFfId(intFF - 2000)
-    }
     const seasonChangeHandler = (value) => {
         // console.log(`selected  season ${value}`);
         setCupSeason(value)
     }
 
     return (
-                <Block className={stl.root} header="Выбор турнира">
-                {/* {JSON.stringify(federations)} */}
-                {!nationsLoading && nations && cups && <form>
-                    {/* <div>{cupId && cupId}</div> */}
-                    <Select
-                        style={{ width: "25ch" }}
-                        loading={cupsLoading}
-                        onChange={ffSelectHandler}
-                        placeholder="Выбор федерации"
-                    >
-                        {
-                            !cupsLoading && federations && federations.map((_ff) => {
-                                // console.log(" #### OPTION ", _ffId, _ff);
-                                if (_ff[0]) return <Option key={_ff[0]} value={_ff[0]}>{_ff[1]}</Option>
-                            })
-                        }
-                    </Select>
-                    {ffId && <Select
+        <Block header="Выбор турнира">
+            {/* {JSON.stringify(intercups)} */}
+            {!nationsLoading && nations && _cups && intercups && <form className={stl.root}>
+                {/* <div>{cupId && cupId}</div> */}
+                <Select className={stl['cup-selector']}
+                    style={{ width: "25ch" }}
+                    loading={cupsLoading}
+                    onChange={intercupSelectHandler}
+                    placeholder="Выбор кубка"
+                >
+                    {
+                        !cupsLoading && intercups && intercups.map((_intercup, inercupindex) => {
+                            // console.log(" #### OPTION ", inercupindex, _intercup);
+                            if (_intercup[1]) return <Option key={"inercupindexKey" + inercupindex} value={_intercup[0]}>{_intercup[1]}</Option>
+                        })
+                    }
+                </Select>
+                {/* {intercupId && <Select
                         ref={typeRef}
                         value={cupType}
                         loading={cupsLoading}
@@ -139,27 +133,29 @@ function IntercupsSelector({onUpdateId, ...restprops}) {
                         style={{ width: "25ch" }}
                     >
                         {
-                            !cupsLoading && ffCups && ffCups.map(([_type, _name], index) => {
+                            !cupsLoading && intercupCups && intercupCups.map(([_type, _name], index) => {
                                 return <Option key={index} value={_type}>{_name}</Option>
                             })
                         }
-                    </Select>}
-                    {cupType && <Select
-                        style={{ width: "8ch" }}
-                        value={cupSeason}
-                        onChange={seasonChangeHandler}
-                        placeholder="Выбор сезона"
+                    </Select>} */}
 
-                    >
-                        {
-                            !cupsLoading && seasonsList && seasonsList.map((season) => {
-                                return <Option key={season} value={season}>{season}</Option>
-                            })
-                        }
-                    </Select>}
-                </form>
-                }
-            </Block>        
+                {intercupId && <Select
+                    className={stl['cup-selector']}
+                    style={{ width: "8ch" }}
+                    value={cupSeason}
+                    onChange={seasonChangeHandler}
+                    placeholder="Выбор сезона"
+
+                >
+                    {
+                        !cupsLoading && seasonsList && seasonsList.map((season) => {
+                            return <Option key={season} value={season}>{season}</Option>
+                        })
+                    }
+                </Select>}
+            </form>
+            }
+        </Block>
     );
 }
 

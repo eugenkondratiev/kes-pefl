@@ -27,9 +27,9 @@ function Cup({ _cupId, children, ...restprops }) {
     }, [])
 
     useEffect(() => {
-        // console.log("useEffect cupId -  ", _cupId);
+        console.log("useEffect cupData -  ", cupData);
         // cupIdRef.current = _cupId;
-    }, [_cupId])
+    }, [cupData])
 
     // useEffect(() => {
     //     console.log("useEffect  olollolo");

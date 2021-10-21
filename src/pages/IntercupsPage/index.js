@@ -9,6 +9,7 @@ import { CupsContext } from '../../context/cups-context';
 // import { NationsContext } from '../../context/nation-context';
 import CupsSelector from '../../components/CupSelector';
 import InterCup from '../../components/InterCup';
+import IntercupsSelector from '../../components/IntercupSelector';
 // import Game from '../../components/Game';
 // import CupRound from '../../components/CupRound';
 // import { ClubsContext } from '../../context/clubs-context';
@@ -51,7 +52,7 @@ function InterCupsPage(props) {
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 
-            <CupsSelector onUpdateId={updateCupId} />
+            <IntercupsSelector onUpdateId={updateCupId} />
 
             {/* <Cup _cupId={cupID} /> */}
             <InterCup _cupId={cupID} />

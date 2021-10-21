@@ -10,7 +10,7 @@ const { Option } = Select;
 
 
 
-function CupsSelector({onUpdateId, ...restprops}) {
+function CupsSelector({ onUpdateId, ...restprops }) {
 
     const cupsContext = useContext(CupsContext);
     const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
@@ -81,7 +81,7 @@ function CupsSelector({onUpdateId, ...restprops}) {
     }, [ffCups])
 
     useEffect(() => {
-        const newId  = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
+        const newId = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
         // console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
 
         setCupId(newId);
@@ -112,54 +112,57 @@ function CupsSelector({onUpdateId, ...restprops}) {
     }
 
     return (
-                <Block className={stl.root} header="Выбор турнира">
-                {/* {JSON.stringify(federations)} */}
-                {!nationsLoading && nations && cups && <form>
-                    {/* <div>{cupId && cupId}</div> */}
-                    <Select
-                        style={{ width: "25ch" }}
-                        loading={cupsLoading}
-                        onChange={ffSelectHandler}
-                        placeholder="Выбор федерации"
-                    >
-                        {
-                            !cupsLoading && federations && federations.map((_ff) => {
-                                // console.log(" #### OPTION ", _ffId, _ff);
-                                if (_ff[0]) return <Option key={_ff[0]} value={_ff[0]}>{_ff[1]}</Option>
-                            })
-                        }
-                    </Select>
-                    {ffId && <Select
-                        ref={typeRef}
-                        value={cupType}
-                        loading={cupsLoading}
-                        onChange={typeSelectHandler}
-                        // defaultValue="cup"
-                        placeholder="Выбор турнира"
-                        style={{ width: "25ch" }}
-                    >
-                        {
-                            !cupsLoading && ffCups && ffCups.map(([_type, _name], index) => {
-                                return <Option key={index} value={_type}>{_name}</Option>
-                            })
-                        }
-                    </Select>}
-                    {cupType && <Select
-                        style={{ width: "8ch" }}
-                        value={cupSeason}
-                        onChange={seasonChangeHandler}
-                        placeholder="Выбор сезона"
+        <Block header="Выбор турнира">
+            {/* {JSON.stringify(federations)} */}
+            {!nationsLoading && nations && cups && <form className={stl.root}>
+                {/* <div>{cupId && cupId}</div> */}
+                <Select
+                    className={stl['cup-selector']}
+                    style={{ width: "25ch" }}
+                    loading={cupsLoading}
+                    onChange={ffSelectHandler}
+                    placeholder="Выбор федерации"
+                >
+                    {
+                        !cupsLoading && federations && federations.map((_ff) => {
+                            // console.log(" #### OPTION ", _ffId, _ff);
+                            if (_ff[0]) return <Option key={_ff[0]} value={_ff[0]}>{_ff[1]}</Option>
+                        })
+                    }
+                </Select>
+                {ffId && <Select
+                    className={stl['cup-selector']}
+                    ref={typeRef}
+                    value={cupType}
+                    loading={cupsLoading}
+                    onChange={typeSelectHandler}
+                    // defaultValue="cup"
+                    placeholder="Выбор турнира"
+                    style={{ width: "25ch" }}
+                >
+                    {
+                        !cupsLoading && ffCups && ffCups.map(([_type, _name], index) => {
+                            return <Option key={index} value={_type}>{_name}</Option>
+                        })
+                    }
+                </Select>}
+                {cupType && <Select
+                    className={stl['cup-selector']}
+                    style={{ width: "8ch" }}
+                    value={cupSeason}
+                    onChange={seasonChangeHandler}
+                    placeholder="Выбор сезона"
 
-                    >
-                        {
-                            !cupsLoading && seasonsList && seasonsList.map((season) => {
-                                return <Option key={season} value={season}>{season}</Option>
-                            })
-                        }
-                    </Select>}
-                </form>
-                }
-            </Block>        
+                >
+                    {
+                        !cupsLoading && seasonsList && seasonsList.map((season) => {
+                            return <Option key={season} value={season}>{season}</Option>
+                        })
+                    }
+                </Select>}
+            </form>
+            }
+        </Block>
     );
 }
 

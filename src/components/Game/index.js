@@ -8,9 +8,10 @@ import { ClubsContext } from '../../context/clubs-context';
 function Game({ game, ...rest }) {
     // console.log("##### game - ", game);
     const { loading: clubsLoading, clubs } = useContext(ClubsContext)
-    if (!game) return (<div></div>)
+    if (!game || !game.team1 || clubsLoading) return null
+    // if (!game || !game.team1 || clubsLoading) return (<div></div>)
     const { team1, team2, firstGame, lastGame } = game;
-    
+
 
     return (
         <div className={stl.root}>

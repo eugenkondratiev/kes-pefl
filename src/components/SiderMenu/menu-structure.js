@@ -37,10 +37,10 @@ export default [
         link: LinkEnum.INTERNATIONAL,
         icon: <SvgIntercupsIcon />
     },
-    {
-        _id: 5,
-        title: "Тесты",
-        link: LinkEnum.TESTS,
-        icon: <VideoCameraOutlined />
-    }
+    // {
+    //     _id: 5,
+    //     title: "Тесты",
+    //     link: LinkEnum.TESTS,
+    //     icon: <VideoCameraOutlined />
+    // }
 ]

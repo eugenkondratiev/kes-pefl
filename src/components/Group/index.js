@@ -32,7 +32,7 @@ function Group({ groupData, ...restProps }) {
             .reduce((acc, _teamId) => {
                 return { ...acc, [_teamId[1]]: _teamId[0] }
             }, {})
-        console.log("_teamIndexes - ", _teamIndexes);
+        // console.log("_teamIndexes - ", _teamIndexes);
         const _table = groupData.pl.split('|')
             .map((_, i) => {
                 return {
@@ -82,7 +82,7 @@ function Group({ groupData, ...restProps }) {
                 }
             })
         });
-        console.log("_table  - ", _table);
+        // console.log("_table  - ", _table);
         setTable([..._table])
         // console.log("_teamINdexes ", Object.entries(groupData.pl.split('|')));
     }, [groupData])
