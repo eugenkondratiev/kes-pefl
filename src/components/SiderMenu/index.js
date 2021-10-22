@@ -7,6 +7,7 @@ import mainMenu from './menu-structure';
 // import cn from 'classnames';
 
 import './style.css';
+import { SvgPlayerIcon } from '../../assets/svg/icons';
 
 const { Sider } = Layout;
 
@@ -30,7 +31,9 @@ function SiderMenu(props) {
                 setIsCollapsed(collapsed)
             }}
         >
-            <div className={stl["main-logo"]} />
+            <div className={stl["main-logo"]}>
+                <SvgPlayerIcon/>
+            </div>
 
             <Menu
                 onClick={(e) => {

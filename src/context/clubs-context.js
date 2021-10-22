@@ -21,14 +21,15 @@ export const ClubsProvider = ({ children }) => {
         return clubs[+_id]
     }
 
-    const { loading:nationsLOading, nations, getNation} = useContext(NationsContext)
+    const { nations } = useContext(NationsContext)
+    // const { loading:nationsLOading, nations, getNation} = useContext(NationsContext)
 
-// console.log("getNation - ",getNation, nationsLOading, nations,);
+    // console.log("getNation - ",getNation, nationsLOading, nations,);
 
     const transformClubsArray = (_) => {
         const clubsArray = [];
         [..._].forEach(({ _id, name, z, ffId, nominal }) => {
-            if (+ffId > 0 ) clubsArray[+_id] = [name, z, ffId, nominal];
+            if (+ffId > 0) clubsArray[+_id] = [name, z, ffId, nominal];
         })
         return clubsArray
     }
@@ -37,7 +38,7 @@ export const ClubsProvider = ({ children }) => {
     const getClubs = async () => {
         if (!nations) return
         setLoading(true);
-        if (localStorage.clubs && localStorage.clubsLastUpdate && ( (Number(Date.now()) - Number(localStorage.getItem("clubsLastUpdate")) ) < 86400*1000*61)) {
+        if (localStorage.clubs && localStorage.clubsLastUpdate && ((Number(Date.now()) - Number(localStorage.getItem("clubsLastUpdate"))) < 86400 * 1000 * 61)) {
             // console.log("localStorage.clubs - ", localStorage.clubs);
             const clubsArray = JSON.parse(localStorage.clubs);
             // console.log("#### get clubs from localStorage - ", clubsArray);
@@ -53,11 +54,11 @@ export const ClubsProvider = ({ children }) => {
                 setClubs((prev) => {
                     // console.log("#### - response.data - ", response.data);
                     const clubsArray = transformClubsArray(response.data);
-                    
+
                     // console.log("transformClubsArray(response.data) -", clubsArray);
 
-                        localStorage.setItem("clubs", JSON.stringify(clubsArray))
-                        localStorage.setItem("clubsLastUpdate", JSON.stringify(Date.now()))
+                    localStorage.setItem("clubs", JSON.stringify(clubsArray))
+                    localStorage.setItem("clubsLastUpdate", JSON.stringify(Date.now()))
 
                     return response.error
                         ? null

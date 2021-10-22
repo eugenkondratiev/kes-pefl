@@ -1,8 +1,8 @@
 
-import React, { useContext, useState } from 'react';
+import React, {  useState } from 'react';
 // import Block from '../../components/Block';
 import Cup from '../../components/Cup';
-import { CupsContext } from '../../context/cups-context';
+// import { CupsContext } from '../../context/cups-context';
 import LayerPage from '../LayerPage';
 // import testCupIreland from '../../assets/tests/cup_93_19';
 // import { NationsContext } from '../../context/nation-context';
@@ -17,8 +17,10 @@ function CupsPage(props) {
 
     // const { loading: cupsLoading, cups, getFfCupData, getCups, getFfCups } = useContext(CupsContext);
     // const { loading: cupsLoading, cups } = useContext(CupsContext);
-    const cupsContext = useContext(CupsContext);
-    const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
+
+
+    // const cupsContext = useContext(CupsContext);
+    // const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
 
     // const { loading: nationsLoading, getNation, nations } = useContext(NationsContext);
 

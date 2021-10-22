@@ -4,12 +4,13 @@ import Game from '../Game';
 
 function CupRound({ round, collapsed, ...rest }) {
     const { name, games } = round;
-    console.log("####round - ", round);
+    // console.log("####round - ", round);
     return (
         <Block header={name} collapsed={collapsed}>
             {/* <Game /> */}
             {games && games.map((game, index) => {
-                if (game) return <Game key={index} game={game} />
+                if (!game) return null
+                return <Game key={index} game={game} />
             })}
             {/* <Game game={testCupIreland.rounds[0].games[0]}/> */}
 

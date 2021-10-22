@@ -34,7 +34,7 @@ function IntercupsSelector({ onUpdateId, ...restprops }) {
 
     useEffect(() => {
         if (!_cups) return;
-        console.log("useEffect cups", _cups);
+        // console.log("useEffect cups", _cups);
 
         // const _intercups = cups.reduce((acc, _intercup, _intercupId) => {
         //     // console.log(" #### OPTION ", _intercupId, _intercup, acc);
@@ -46,7 +46,7 @@ function IntercupsSelector({ onUpdateId, ...restprops }) {
         const _intercups = Object.entries(_cups)
             .map(intercup => [intercup[0], intercup[1].name])
             .sort((a, b) => a[1].localeCompare(b[1]))
-        console.log("_intercups -", _intercups);
+        // console.log("_intercups -", _intercups);
         // console.log(" ######### - intercups", intercups);
         setIntercups(_intercups)
     }, [_cups])

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { NETLIFY_FUNCTIONS } from '../utils/constants';
 
 import fetchOwnApi from '../mongo/fetch-api-data';

@@ -8,22 +8,37 @@ import { getClubLogoById } from '../../utils/pefl-stings';
 import ClubLogo from '../ClubLogo';
 import GameScore from '../GameScore';
 import cn from 'classnames';
+import useDebounce from '../../hooks/useDebounce';
+import useTimeout from '../../hooks/useTimeout';
+import useData from '../../hooks/useCupData';
+import { cupById_REF } from '../../utils/constants';
 
 const tableCaptions = ["В", "Н", "П", "Гз", "Гп", "О"];
 
-function Group({ groupData, ...restProps }) {
+function Group({ group, _id, delay, ...restProps }) {
 
-    // const formGroupData = (_) => {
-    //     console.log("formGroupData");
-    //     if (!_) return null
-    //     const _groupArray = [..._].pl.split('|').map(
-    //         teamId => {
-    //             return { _id: teamId, games: [], win: 0, draw: 0, lost: 0, plusGoals: 0, minusGoals: 0, scores: 0 }
-    //         }
-    //     )
-    //     return _groupArray
-    // }
+    const [groupID, setGroupID] = useState()
+    // console.log("### groupprops", group._id, _id, delay);
+
+    // useDebounce(() => {
+    //     console.log("setGroupID - ", group._id);
+
+    //     setGroupID(group && _id)
+    //     // setGroupID(group && group._id)
+    // }, +delay, [_id])
+
+    useTimeout(() => {
+        // console.log("setGroupID - ", group._id);
+
+        setGroupID(group && _id)
+        // setGroupID(group && group._id)
+    }, delay)
+
+
     const [table, setTable] = useState()
+
+    const { cupData: groupData, isLoading: isGroupDataLoading, isError: isGroupDataError } = useData(cupById_REF, groupID, [groupID])
+
 
     useEffect(() => {
         if (!groupData) return
@@ -87,10 +102,18 @@ function Group({ groupData, ...restProps }) {
         // console.log("_teamINdexes ", Object.entries(groupData.pl.split('|')));
     }, [groupData])
 
-    if (!groupData) return <Spin />
+    if (!groupData && !group) return <Spin />
+    if (!groupData && group && (!isGroupDataLoading || isGroupDataError)) return <Block
+        header={group.name}
+    >
+        {isGroupDataLoading && 'Загрузка '}
+        {isGroupDataError && 'Ошибка загрузки из базы данных '}
+        {(isGroupDataError || isGroupDataLoading) && <Spin />}
 
+        {_id}
+    </Block>
     return (
-        <Block header={groupData.name}>
+        <Block header={groupData && groupData.name}>
             {/* <h4>
                 {groupData._id}
             </h4>
@@ -109,7 +132,7 @@ function Group({ groupData, ...restProps }) {
 
                 <div className={stl['table-line']}>
                     <div className={stl['team-name']}><ClubLabel label /></div>
-                    {groupData.pl.split('|').map((id, i) => {
+                    {groupData && groupData.pl.split('|').map((id, i) => {
                         return <div key={'logos' + i} className={cn(stl['table-cell'], stl['club-logo'])}>
                             {/* <span className={stl["club-logo"]} data-role="club-logo">
                                 <img src={getClubLogoById(id)} alt={id} />
@@ -133,8 +156,8 @@ function Group({ groupData, ...restProps }) {
                                 {row.games.map((game, gameIndex) => {
                                     return game.firstGame
                                         ? <div key={"g" + row._id + gameIndex} className={stl['table-cell']}>
-                                            <GameScore  _game={game.lastGame} />
-                                            <GameScore  first reverse _game={game.firstGame}/>
+                                            <GameScore _game={game.lastGame} />
+                                            <GameScore first reverse _game={game.firstGame} />
                                         </div>
                                         : <div key={"g" + row._id + gameIndex} className={cn(stl['table-cell'], stl['club-logo'])}>
                                             <ClubLogo id={row._id} />
@@ -156,7 +179,7 @@ function Group({ groupData, ...restProps }) {
             </div>
             <Block className={stl.gamesBlock} header="Games" collapsed>
 
-                {groupData.rounds.map((round, roundIndex) => {
+                {groupData && groupData.rounds.map((round, roundIndex) => {
                     return <div key={round._id + roundIndex} className={stl.games}>
 
                         <h4>{round.name}</h4>

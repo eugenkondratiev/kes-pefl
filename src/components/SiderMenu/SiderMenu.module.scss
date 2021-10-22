@@ -11,6 +11,19 @@ aside.menu-sider {
     & .ant-layout-sider-zero-width-trigger {
         top: 75px
     }
+
+    & div.main-logo {
+        height:75px;
+        color: $second;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>span>svg {
+            height: 50px;
+            width: 50px;
+        }
+    }
 }
 
 ul.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) li.ant-menu-item.ant-menu-item-selected.main-menu-item {
