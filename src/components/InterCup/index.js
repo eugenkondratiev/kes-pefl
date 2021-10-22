@@ -1,17 +1,13 @@
 import { Spin } from 'antd';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useData from '../../hooks/useCupData';
 import useDebounce from '../../hooks/useDebounce';
 import { cupById_REF } from '../../utils/constants';
-import { getFlagById, getIntercupLogoById } from '../../utils/pefl-stings';
+import { getIntercupLogoById } from '../../utils/pefl-stings';
 import CupRound from '../CupRound';
 import stl from './InterCup.module.scss';
 // import testCup from '../../assets/tests/cup_93_19'
-import testCup from '../../assets/tests/ec_231_18'
-import testCupGroups from '../../assets/tests/ecg_231_18'
 
-import useTimeout from '../../hooks/useTimeout';
-import Block from '../Block';
 import Group from '../Group';
 
 function InterCup({ _cupId, children, ...restprops }) {
