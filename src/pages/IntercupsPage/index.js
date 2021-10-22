@@ -49,6 +49,12 @@ function InterCupsPage(props) {
         <LayerPage mainCaption="История международных кубков">
 
             <Block header="Раздел в разработке">
+                <div>
+                    Для просмотра международных кубков
+                </div>
+                <div>
+                    с групповым туриром используйте широкий экран
+                </div>
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 
