@@ -53,7 +53,7 @@ function InterCupsPage(props) {
                     Для просмотра международных кубков
                 </div>
                 <div>
-                    с групповым туриром используйте широкий экран
+                    с групповым турниром используйте широкий экран
                 </div>
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}

@@ -57,7 +57,7 @@ function IntercupsSelector({ onUpdateId, ...restprops }) {
     //     // console.log("getintercupCups --- ", intercupCups);
     //     const intercupCupsArray = [];
     //     if (intercupCups["cup"]) intercupCupsArray.push(["cup", "Кубок"])
-    //     if (intercupCups["supercup"]) intercupCupsArray.push(["supercup", "Суперубок"])
+    //     if (intercupCups["supercup"]) intercupCupsArray.push(["supercup", "Суперкубок"])
     //     if (intercupCups["extracup"]) intercupCupsArray.push(["extracup", intercupCups["extracup"].name])
     //     setintercupCups(intercupCupsArray);
 

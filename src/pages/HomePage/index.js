@@ -27,7 +27,7 @@ function HomePage(props) {
                     Для просмотра международных кубков
                 </div>
                 <div>
-                    с групповым туриром используйте широкий экран
+                    с групповым турниром используйте широкий экран
                 </div>  
                                     {/* {nationsContext.loading && <Spin />}
                 {String(nationsContext.loading)}

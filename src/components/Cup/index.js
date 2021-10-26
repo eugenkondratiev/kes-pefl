@@ -22,8 +22,35 @@ function Cup({ _cupId, children, ...restprops }) {
 
     const sortedRounds = useCallback(_ => {
         const sorted = [..._].reverse()
+        const roundsToDelete = [];
+        [...sorted].forEach((round, index, arr) => {
+            if (!arr[index + 1] || !round) return
+            // console.log(" ### Round ", index, round.name, round.name.match(/инал/i), arr[index + 1].name);
+            round.games.forEach(g => {
+                    if (g && g.lastGame && Array.isArray(g.lastGame._score)) 
+                    {
+                        const firstGameIndex = arr[index + 1].games.findIndex((prevGame, prevGameIndex)=>prevGame.lastGame.team1 === g.lastGame.team2)
+                        
+                        if (firstGameIndex > -1 ) g.firstGame = JSON.parse(JSON.stringify(arr[index + 1].games[firstGameIndex].lastGame))
+                        console.log(g.lastGame._score, g, round.name);
+                        g.lastGame._score = g.lastGame._score[0]
+                    }
+            })
+
+            if (round.name && round.name.match(/инал/i) && round.name === arr[index + 1].name) {
+                console.log(" ### delete round ", index + 1, arr[index + 1].name, arr[index + 1]);
+                roundsToDelete.push(index + 1)
+            }
+        });
+
+
         // console.log("sorted  - ", sorted);
-        return sorted
+        // return sorted
+        if (roundsToDelete[0]) roundsToDelete.forEach(_ => { delete sorted[_] })
+
+        const filteredRounds = sorted.filter(_ => _)
+        console.log("#### filteredRounds  - ", filteredRounds);
+        return filteredRounds
     }, [])
 
     useEffect(() => {

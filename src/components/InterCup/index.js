@@ -28,10 +28,10 @@ function InterCup({ _cupId, children, ...restprops }) {
 
     // let isError = false;
 
-    // useEffect(() => {
-    //     ;
-    //     console.log("intercupData  - ", cupData);
-    // }, [cupData])
+    useEffect(() => {
+        ;
+        console.log("intercupData  - ", cupData);
+    }, [cupData])
 
     // useTimeout(() => {
     //     // setIsLoading(false);
@@ -47,10 +47,17 @@ function InterCup({ _cupId, children, ...restprops }) {
         const sorted = [..._].reverse()
         // console.log("sorted  - ", sorted);
         // console.log("cupData.groups  - ", cupData, cupData.groups);
+        const roundsToDelete = [];
 
         if (cupData && cupData.groups) {
             [...sorted].forEach((round, index, arr) => {
-                if (!arr[index + 1]) return
+                if (!arr[index + 1] || !round) return
+                console.log(" ### Round ", index, round.name, round.name.match(/инал/i), arr[index + 1].name);
+
+                if (round.name && round.name.match(/инал/i) && round.name === arr[index + 1].name) {
+                    console.log(" ### delete round ", index + 1, arr[index + 1].name, arr[index + 1]);
+                    roundsToDelete.push(index + 1)
+                }
                 const _id = round.roundID && +round.roundID || round.roundId && +round.roundId;
                 const _id1 = arr[index + 1].roundID && +arr[index + 1].roundID || arr[index + 1].roundId && +arr[index + 1].roundId;
 
@@ -60,7 +67,13 @@ function InterCup({ _cupId, children, ...restprops }) {
                 }
             });
         }
-        return sorted
+
+        if (roundsToDelete[0]) roundsToDelete.forEach(_ => { delete sorted[_] })
+
+        const filteredRounds = sorted.filter(_ => _)
+        console.log("#### filteredRounds  - ", filteredRounds);
+        return filteredRounds
+
     }, [cupData])
 
     useEffect(() => {
@@ -101,13 +114,13 @@ function InterCup({ _cupId, children, ...restprops }) {
             {cupData && cupID && cupData.rounds && sortedRounds(cupData.rounds).map((round, roundindex) => {
                 // if (!round.groups) return <div>{round.roundID}</div>
                 return round.groups
-                    ? round.groups.map(((group, groupIndex) => 
-                    <Group 
-                    key={group._id + roundindex} 
-                    group={group} 
-                    _id={group._id}
-                    delay={100 + groupIndex * 1000} 
-                    />))
+                    ? round.groups.map(((group, groupIndex) =>
+                        <Group
+                            key={group._id + roundindex}
+                            group={group}
+                            _id={group._id}
+                            delay={100 + groupIndex * 500}
+                        />))
                     // ? round.groups.map(((group, groupIndex) => <Group key={group._id + roundindex} groupData={testCupGroups[group._id]} delay={100 + groupIndex * 100} />))
                     // ? round.groups.map(((group, groupIndex) => {
                     //     console.log("OLOLOOLO groups - ", group);

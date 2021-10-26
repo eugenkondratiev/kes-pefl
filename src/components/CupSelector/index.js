@@ -54,7 +54,7 @@ function CupsSelector({ onUpdateId, ...restprops }) {
         // console.log("getFfCups --- ", ffCups);
         const ffCupsArray = [];
         if (ffCups["cup"]) ffCupsArray.push(["cup", "Кубок"])
-        if (ffCups["supercup"]) ffCupsArray.push(["supercup", "Суперубок"])
+        if (ffCups["supercup"]) ffCupsArray.push(["supercup", "Суперкубок"])
         if (ffCups["extracup"]) ffCupsArray.push(["extracup", ffCups["extracup"].name])
         setFfCups(ffCupsArray);
 

@@ -7,6 +7,10 @@ function GameScore({ _game, first, reverse, onlyscore, ...rest }) {
     // console.log("#### game Score  - ", _game);
 
     const { _score, report, tv } = _game;
+    if (!_score || !_score.split) {
+        console.log("____score problem", _score, _game);
+        return null
+    }
     const scoreArray = _score.split(':')
     const resultScore = reverse ? `${scoreArray[1]}:${scoreArray[0]}` : _score;
 

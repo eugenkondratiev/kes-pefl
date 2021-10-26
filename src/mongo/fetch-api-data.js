@@ -1,5 +1,10 @@
 export default async (_apiRef) => {
     // console.log("### _apiRef  - ", _apiRef);
+    if (!_apiRef) return {
+        count: 0,
+        data: [],
+        error: "FAULT_API_REF"
+    }
     let response
     try {
        response = await fetch(_apiRef);        
