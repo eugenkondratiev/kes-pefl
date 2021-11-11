@@ -5,7 +5,7 @@ import GameScore from '../GameScore';
 import ClubLabel from '../ClubLabel';
 import { ClubsContext } from '../../context/clubs-context';
 
-function Game({ game, ...rest }) {
+function Game({ game, grid, largescreen, ...rest }) {
     // console.log("##### game - ", game);
     const { loading: clubsLoading, clubs } = useContext(ClubsContext)
     if (!game || !game.team1 || clubsLoading) return null
@@ -14,21 +14,39 @@ function Game({ game, ...rest }) {
 
 
     return (
-        <div className={stl.root}>
-            <div className={stl.firstTeam}>
+        <div className={largescreen ? stl['game-root'] : stl.root} >
+            {!largescreen && <div className={stl.firstTeam}>
                 {clubs && <ClubLabel _id={team1.j} />}
             </div>
-            <div className={stl.gameScore}>
-                <GameScore _game={lastGame} />
+            }
+            {
+                !largescreen &&
+                <div className={stl.gameScore}>
+                    <GameScore _game={lastGame} />
+                    {firstGame && <GameScore first _game={firstGame} />}
+                </div>
+            }
+            {
+                !largescreen &&
+                <div className={stl.secondTeam}>
+                    {clubs && <ClubLabel _id={team2.j} />}
+                </div>
+            }
+            {
+                largescreen && <div className={stl['team-labels']}>
+                {clubs && <ClubLabel _id={team1.j} largescreen/>}
+                {clubs && <ClubLabel _id={team2.j} largescreen/>}
 
-                {firstGame && <GameScore first _game={firstGame} />}
-            </div>
-            <div className={stl.secondTeam}>
-                {clubs && <ClubLabel _id={team2.j} />}
+                </div>
+            }
+            {
+                largescreen && <div className={stl['game-scores']}>
+                    <GameScore _game={lastGame} largescreen/>
+                    {firstGame && <GameScore first _game={firstGame} largescreen/>}
+                </div>
+            }
+        </div >
 
-            </div>
-
-        </div>
     );
 }
 

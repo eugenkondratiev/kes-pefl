@@ -33,7 +33,7 @@ function GameScore({ _game, first, reverse, onlyscore, ...rest }) {
                 href={getTvRef(tv.j, tv.z)}
                 target="_blank" rel="noopener noreferrer"
             >
-                <SvgBallIcon title="Открыть ТВ" viewBox="0 0 450 480" />
+                <SvgBallIcon title="Открыть ТВ" viewBox="0 0 490 480" />
                 {/* <img alt="tv" src="http://pefl.ru/skins/refl/img/i3.gif" /> */}
             </a>}
             {tv.z && !onlyscore && <a

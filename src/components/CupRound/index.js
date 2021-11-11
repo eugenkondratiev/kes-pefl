@@ -10,7 +10,7 @@ function CupRound({ round, collapsed, ...rest }) {
             {/* <Game /> */}
             {games && games.map((game, index) => {
                 if (!game) return null
-                return <Game key={index} game={game} />
+                return <Game key={index} game={game} largescreen />
             })}
             {/* <Game game={testCupIreland.rounds[0].games[0]}/> */}
 

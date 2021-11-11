@@ -15,11 +15,12 @@
     & .game-tv {
         height: 1.1rem;
         margin-left: 4px;
-        color:$third;
+        color: $third;
 
         & img,
         & svg {
             height: 1.2rem;
+            margin-bottom: -2px;
         }
     }
 
@@ -27,10 +28,11 @@
         height: 1.1rem;
         margin-left: 2px;
         margin-right: 2px;
-        color:$third;
+        color: $third;
 
         & img,
         & svg {
+            margin-bottom: -1px;
             height: 1.2rem;
         }
     }

@@ -7,15 +7,46 @@
     min-width: 25ch;
 }
 
-.club-logo > img,
-.ff-flag > img
- {
+.root-lg {
+    min-width: 24ch;
+    margin: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 75%;
+
+
+}
+
+.club-name-lg {
+    text-align: center;
+}
+
+.club-nation-lg {
+    overflow: hidden;
+
+    &>img {
+        height: 1.3em;
+    }
+}
+
+.club-logo-lg>img {
     height: 1.5em;
+    // margin: 2px 4px;
+}
+
+.club-logo>img,
+.ff-flag>img {
+    height: 1.8em;
     margin: 2px 4px;
 }
 
 
-.ff-flag > img
- {
+.ff-flag>img,
+.club-logo-lg>img {
+    height: 1.8em;
+}
+
+.ff-flag>img {
     height: 1.2em;
 }
