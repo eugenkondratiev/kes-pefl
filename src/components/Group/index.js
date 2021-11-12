@@ -15,7 +15,7 @@ import { cupById_REF } from '../../utils/constants';
 
 const tableCaptions = ["В", "Н", "П", "Гз", "Гп", "О"];
 
-function Group({ group, _id, delay, ...restProps }) {
+function Group({ group, _id, delay, smallscreen, ...restProps }) {
 
     const [groupID, setGroupID] = useState()
     // console.log("### groupprops", group._id, _id, delay);
@@ -131,7 +131,7 @@ function Group({ group, _id, delay, ...restProps }) {
             <div className={stl['group-table']}>
 
                 <div className={stl['table-line']}>
-                    <div className={stl['team-name']}><ClubLabel label /></div>
+                    <div className={stl['team-name']}><ClubLabel label smallscreen/></div>
                     {groupData && groupData.pl.split('|').map((id, i) => {
                         return <div key={'logos' + i} className={cn(stl['table-cell'], stl['club-logo'])}>
                             {/* <span className={stl["club-logo"]} data-role="club-logo">
@@ -152,7 +152,7 @@ function Group({ group, _id, delay, ...restProps }) {
                         return (
                             <div key={'row' + row._id} className={stl['table-line']}>
 
-                                <div className={stl['team-name']}><ClubLabel _id={row._id} /></div>
+                                <div className={stl['team-name']}><ClubLabel _id={row._id} smallscreen/></div>
                                 {row.games.map((game, gameIndex) => {
                                     return game.firstGame
                                         ? <div key={"g" + row._id + gameIndex} className={stl['table-cell']}>
@@ -183,7 +183,7 @@ function Group({ group, _id, delay, ...restProps }) {
                     return <div key={round._id + roundIndex} className={stl.games}>
 
                         <h4>{round.name}</h4>
-                        {round.games.map((g, gameIndex) => <Game key={round._id + round.roundID + gameIndex} game={g} />)}
+                        {round.games.map((g, gameIndex) => <Game key={round._id + round.roundID + gameIndex} game={g} smallscreen/>)}
                     </div>
 
                 })}

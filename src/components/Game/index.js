@@ -5,7 +5,7 @@ import GameScore from '../GameScore';
 import ClubLabel from '../ClubLabel';
 import { ClubsContext } from '../../context/clubs-context';
 
-function Game({ game, grid, largescreen, ...rest }) {
+function Game({ game, grid, smallscreen, ...rest }) {
     // console.log("##### game - ", game);
     const { loading: clubsLoading, clubs } = useContext(ClubsContext)
     if (!game || !game.team1 || clubsLoading) return null
@@ -14,35 +14,35 @@ function Game({ game, grid, largescreen, ...rest }) {
 
 
     return (
-        <div className={largescreen ? stl['game-root'] : stl.root} >
-            {!largescreen && <div className={stl.firstTeam}>
+        <div className={smallscreen ? stl['game-root'] : stl.root} >
+            {!smallscreen && <div className={stl.firstTeam}>
                 {clubs && <ClubLabel _id={team1.j} />}
             </div>
             }
             {
-                !largescreen &&
+                !smallscreen &&
                 <div className={stl.gameScore}>
                     <GameScore _game={lastGame} />
                     {firstGame && <GameScore first _game={firstGame} />}
                 </div>
             }
             {
-                !largescreen &&
+                !smallscreen &&
                 <div className={stl.secondTeam}>
                     {clubs && <ClubLabel _id={team2.j} />}
                 </div>
             }
             {
-                largescreen && <div className={stl['team-labels']}>
-                {clubs && <ClubLabel _id={team1.j} largescreen/>}
-                {clubs && <ClubLabel _id={team2.j} largescreen/>}
+                smallscreen && <div className={stl['team-labels']}>
+                {clubs && <ClubLabel _id={team1.j} smallscreen/>}
+                {clubs && <ClubLabel _id={team2.j} smallscreen/>}
 
                 </div>
             }
             {
-                largescreen && <div className={stl['game-scores']}>
-                    <GameScore _game={lastGame} largescreen/>
-                    {firstGame && <GameScore first _game={firstGame} largescreen/>}
+                smallscreen && <div className={stl['game-scores']}>
+                    <GameScore _game={lastGame} smallscreen/>
+                    {firstGame && <GameScore first _game={firstGame} smallscreen/>}
                 </div>
             }
         </div >

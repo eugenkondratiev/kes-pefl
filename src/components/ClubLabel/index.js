@@ -4,7 +4,7 @@ import stl from './ClubLabel.module.scss';
 import { getClubLogoById, getClubRef, getFlagById } from '../../utils/pefl-stings';
 import cn from 'classnames';
 
-function ClubLabel({ _id, label, grid, largescreen, children }) {
+function ClubLabel({ _id, label, grid, smallscreen, children }) {
     const { getClub } = useContext(ClubsContext);
     if (label) return <div className={stl["root"]} ><h4>Команда</h4></div>
     const club = _id && getClub(_id);
@@ -13,24 +13,24 @@ function ClubLabel({ _id, label, grid, largescreen, children }) {
     const [name, z, ff] = club;
 
     const formClubLogo = () => {
-        return <span className={largescreen ? stl["club-logo-lg"] : stl["club-logo"]} data-role="club-logo">
+        return <span className={smallscreen ? stl["club-logo-sm"] : stl["club-logo"]} data-role="club-logo">
             <img src={getClubLogoById(_id)} alt={_id} />
         </span>
     }
     const formClubName = () => {
-        return <span className={largescreen ? stl["club-name-lg"] : stl["club-label"]} data-role="club-ref">
+        return <span className={smallscreen ? stl["club-name-sm"] : stl["club-label"]} data-role="club-ref">
             <a href={getClubRef(_id, z)} target="_blank" rel="noopener noreferrer">
                 {name}
             </a>
         </span>
     }
     const formClubNation = () => {
-        return <span className={largescreen ? stl["club-nation-lg"] : stl["ff-flag"]} data-role="club-ff-flag">
+        return <span className={smallscreen ? stl["club-nation-sm"] : stl["ff-flag"]} data-role="club-ff-flag">
             <img src={getFlagById(ff)} alt={ff} />
         </span>
     }
     return (
-        <div className={largescreen ? stl["root-lg"] : stl.root} >
+        <div className={smallscreen ? stl["root-sm"] : stl.root} >
             {/* {String(club)} */}
             {formClubLogo()}
             {formClubName()}

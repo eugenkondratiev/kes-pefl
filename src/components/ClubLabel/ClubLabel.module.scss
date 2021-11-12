@@ -7,7 +7,7 @@
     min-width: 25ch;
 }
 
-.root-lg {
+.root-sm {
     min-width: 24ch;
     margin: 2px;
     display: flex;
@@ -18,11 +18,11 @@
 
 }
 
-.club-name-lg {
+.club-name-sm {
     text-align: center;
 }
 
-.club-nation-lg {
+.club-nation-sm {
     overflow: hidden;
 
     &>img {
@@ -30,7 +30,7 @@
     }
 }
 
-.club-logo-lg>img {
+.club-logo-sm>img {
     height: 1.5em;
     // margin: 2px 4px;
 }
@@ -43,7 +43,7 @@
 
 
 .ff-flag>img,
-.club-logo-lg>img {
+.club-logo-sm>img {
     height: 1.8em;
 }
 
