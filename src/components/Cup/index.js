@@ -1,5 +1,5 @@
 import { Spin } from 'antd';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import useData from '../../hooks/useCupData';
 import useDebounce from '../../hooks/useDebounce';
 import { cupById_REF } from '../../utils/constants';
@@ -8,10 +8,6 @@ import CupRound from '../CupRound';
 import stl from './Cup.module.scss';
 
 function Cup({ _cupId, children, ...restprops }) {
-    // const cupIdRef = useRef()
-    // const cupDataRef = useRef();
-
-    // console.log(" -!!! Cup component rendered ", _cupId);
     const [cupID, setCupID] = useState()
 
     useDebounce(() => {
@@ -25,7 +21,6 @@ function Cup({ _cupId, children, ...restprops }) {
         const roundsToDelete = [];
         [...sorted].forEach((round, index, arr) => {
             if (!arr[index + 1] || !round) return
-            // console.log(" ### Round ", index, round.name, round.name.match(/инал/i), arr[index + 1].name);
             round.games.forEach(g => {
                 if (g && g.lastGame && Array.isArray(g.lastGame._score)) {
                     const firstGameIndex = arr[index + 1].games.findIndex((prevGame, prevGameIndex) => prevGame.lastGame.team1 === g.lastGame.team2)
@@ -43,35 +38,22 @@ function Cup({ _cupId, children, ...restprops }) {
         });
 
 
-        // console.log("sorted  - ", sorted);
-        // return sorted
         if (roundsToDelete[0]) roundsToDelete.forEach(_ => { delete sorted[_] })
 
         const filteredRounds = sorted.filter(_ => _)
-        console.log("#### filteredRounds  - ", filteredRounds);
         return filteredRounds
     }, [])
 
-    useEffect(() => {
-        console.log("useEffect cupData -  ", cupData);
-        // cupIdRef.current = _cupId;
-    }, [cupData])
-
     // useEffect(() => {
-    //     console.log("useEffect  olollolo");
-    //     cupIdRef.current = "ololo";
-    // }, [])
+    //     // cupIdRef.current = _cupId;
+    // }, [cupData])
+
+
     if (isError || isLoading) return <Spin />
     if (!cupData || !cupID) return <h1>Выберите турнир <Spin /></h1>
 
     return (
         <div className={stl.root}>
-            {/* <h1 style={{ textAlign: 'center', width: "100%" }}>{cupID && cupID}</h1> */}
-            {/* <h2 style={{ textAlign: 'center', width:"100%" }}>{cupIdRef && cupIdRef.current}</h2> */}
-
-            {/* { cupData && JSON.stringify(cupData, null, " ")} */}
-            {/* {cupData && cupID && JSON.stringify(sortedRounds(cupData.rounds), null, " ")} */}
-            {/* {cupData && cupID && JSON.stringify(cupData.rounds, null, " ")} */}
             <div className={stl.maininfo}>
                 <div >
 

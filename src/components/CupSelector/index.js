@@ -82,23 +82,19 @@ function CupsSelector({ onUpdateId, ...restprops }) {
 
     useEffect(() => {
         const newId = `${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`;
-        // console.log("#### newId   cupType, ffId, cupSeason- " , newId, cupType, ffId, cupSeason);
 
         setCupId(newId);
         if (cupType && ffId && cupSeason) {
-            // console.log("#### newId   to Cups - " , newId);
             onUpdateId(newId)
         }
     }, [cupType, ffId, cupSeason])
 
     const ffSelectHandler = (value) => {
-        // console.log(`selected  FF ${value}`);
         setFfId(value);
 
     }
 
     const typeSelectHandler = (value) => {
-        // console.log(`selected  type ${value}`);
         // setCupTupe(value === "extracup" ? "cup" : value);
         setCupTupe(value);
         const intFF = +ffId;

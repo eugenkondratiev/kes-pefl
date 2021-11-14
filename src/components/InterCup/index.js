@@ -28,10 +28,10 @@ function InterCup({ _cupId, children, ...restprops }) {
 
     // let isError = false;
 
-    useEffect(() => {
-        ;
-        console.log("intercupData  - ", cupData);
-    }, [cupData])
+    // useEffect(() => {
+    //     ;
+        // console.log("intercupData  - ", cupData);
+    // }, [cupData])
 
     // useTimeout(() => {
     //     // setIsLoading(false);
@@ -52,7 +52,6 @@ function InterCup({ _cupId, children, ...restprops }) {
         if (cupData && cupData.groups) {
             [...sorted].forEach((round, index, arr) => {
                 if (!arr[index + 1] || !round) return
-                console.log(" ### Round ", index, round.name, round.name.match(/инал/i), arr[index + 1].name);
 
                 if (round.name && round.name.match(/инал/i) && round.name === arr[index + 1].name) {
                     console.log(" ### delete round ", index + 1, arr[index + 1].name, arr[index + 1]);
@@ -63,7 +62,6 @@ function InterCup({ _cupId, children, ...restprops }) {
 
                 if (_id - _id1 > 4) {
                     sorted.splice(index + 1, 0, { groups: cupData.groups })
-                    console.log(`###  Groups between ${_id} ${round.name} and ${_id1} ${arr[index + 1].name}`);
                 }
             });
         }
@@ -71,7 +69,6 @@ function InterCup({ _cupId, children, ...restprops }) {
         if (roundsToDelete[0]) roundsToDelete.forEach(_ => { delete sorted[_] })
 
         const filteredRounds = sorted.filter(_ => _)
-        console.log("#### filteredRounds  - ", filteredRounds);
         return filteredRounds
 
     }, [cupData])

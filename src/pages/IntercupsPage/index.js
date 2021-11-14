@@ -41,7 +41,6 @@ function InterCupsPage(props) {
     const updateCupId = (_id) => {
 
         setCupID(_id)
-        console.log("updateCupId - ", _id);
     }
 
 

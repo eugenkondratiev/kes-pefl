@@ -112,7 +112,6 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
             !groupData && setGroupID(prevGroupID => {
                 return group && _id ? group && _id : prevGroupID
             })
-            console.log("###on Inflate simple block w/o content!", group, _id);
         }}
     >
         {isGroupDataLoading && 'Загрузка '}
@@ -125,10 +124,10 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
         <Block
             collapsed
             header={groupData && groupData.name}
-            onInflate={() => {
-                // alert(_id);
-                console.log("###on Inflate!", _id);
-            }}
+            // onInflate={() => {
+            //     // alert(_id);
+            //     console.log("###on Inflate!", _id);
+            // }}
         >
             {/* <h4>
                 {groupData._id}
