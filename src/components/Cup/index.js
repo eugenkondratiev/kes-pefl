@@ -18,7 +18,7 @@ function Cup({ _cupId, children, ...restprops }) {
         setCupID(_cupId)
     }, 2000, [_cupId])
 
-    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID])
+    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID], { notNullParameters: true })
 
     const sortedRounds = useCallback(_ => {
         const sorted = [..._].reverse()
@@ -27,14 +27,13 @@ function Cup({ _cupId, children, ...restprops }) {
             if (!arr[index + 1] || !round) return
             // console.log(" ### Round ", index, round.name, round.name.match(/инал/i), arr[index + 1].name);
             round.games.forEach(g => {
-                    if (g && g.lastGame && Array.isArray(g.lastGame._score)) 
-                    {
-                        const firstGameIndex = arr[index + 1].games.findIndex((prevGame, prevGameIndex)=>prevGame.lastGame.team1 === g.lastGame.team2)
-                        
-                        if (firstGameIndex > -1 ) g.firstGame = JSON.parse(JSON.stringify(arr[index + 1].games[firstGameIndex].lastGame))
-                        console.log(g.lastGame._score, g, round.name);
-                        g.lastGame._score = g.lastGame._score[0]
-                    }
+                if (g && g.lastGame && Array.isArray(g.lastGame._score)) {
+                    const firstGameIndex = arr[index + 1].games.findIndex((prevGame, prevGameIndex) => prevGame.lastGame.team1 === g.lastGame.team2)
+
+                    if (firstGameIndex > -1) g.firstGame = JSON.parse(JSON.stringify(arr[index + 1].games[firstGameIndex].lastGame))
+                    console.log(g.lastGame._score, g, round.name);
+                    g.lastGame._score = g.lastGame._score[0]
+                }
             })
 
             if (round.name && round.name.match(/инал/i) && round.name === arr[index + 1].name) {

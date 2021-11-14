@@ -2,7 +2,7 @@ import React from 'react';
 import stl from './GameScore.module.scss';
 import { getGameRef, getHeatmapRef, getTvRef } from '../../utils/pefl-stings';
 import { SvgBallIcon, SvgStatIcon } from '../../assets/svg/icons';
-
+import cn from 'classnames';
 function GameScore({ _game, first, reverse, onlyscore, ...rest }) {
     // console.log("#### game Score  - ", _game);
 
@@ -16,7 +16,8 @@ function GameScore({ _game, first, reverse, onlyscore, ...rest }) {
 
 
     return (
-        <div className={stl.root}>
+        // <div className={stl.root}>
+        <div className={cn(stl.root, { [stl.onlyscore]: onlyscore })}>
 
             {report.z
                 ? <a

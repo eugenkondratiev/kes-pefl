@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import fetchApiData from "../../mongo/fetch-api-data";
 
 
-export default function useData(endpoint, parameters, dependencies = []) {
+export default function useData(endpoint, parameters, dependencies = [], options = { notNullParameters: false }) {
 
     const [cupData, setData] = useState()
     const [isLoading, setIsLoading] = useState(true)
@@ -12,14 +12,19 @@ export default function useData(endpoint, parameters, dependencies = []) {
         const getData = async () => {
             try {
                 setIsLoading(true)
-                const answer = await fetchApiData(`${endpoint}/${parameters && parameters}`)
-                if (answer.error) {
-                    console.log("#### useData fetching error ", answer.error);
+                if (options.notNullParameters && !parameters) {
 
-                    setIsError(true);
                 } else {
-                    setData(answer.data[0]);
-                    setIsError(false);
+
+                    const answer = await fetchApiData(`${endpoint}/${parameters && parameters}`)
+                    if (answer.error) {
+                        console.log("#### useData fetching error ", answer.error);
+
+                        setIsError(true);
+                    } else {
+                        setData(answer.data[0]);
+                        setIsError(false);
+                    }
                 }
             } catch (error) {
                 console.log("#### useData error ", error);

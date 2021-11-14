@@ -20,8 +20,10 @@ div.group-table {
 
         & div.table-cell {
             height: fit-content;
-            min-width: 14ch;
+            // min-width: 14ch;
+            min-width: 8ch;
         }
+
         & div.table-cell.club-logo {
             display: flex;
             justify-content: center;
@@ -29,9 +31,11 @@ div.group-table {
 
         & div.table-smallcell {
             height: fit-content;
-            min-width: 4ch;
+            min-width: 3ch;
             display: flex;
             align-items: center;
+            justify-content: center;
+            margin: 0px 4px;
         }
 
         & div.team-name {

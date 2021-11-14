@@ -21,7 +21,7 @@ function InterCup({ _cupId, children, ...restprops }) {
         setCupID(_cupId)
     }, 2000, [_cupId])
 
-    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID])
+    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID],{ notNullParameters: true })
     // const [isLoading, setIsLoading] = useState(true)
     // const [cupData, setcupData] = useState()
     const [cupGroupsData, setcupGroupsData] = useState()
@@ -116,6 +116,7 @@ function InterCup({ _cupId, children, ...restprops }) {
                 return round.groups
                     ? round.groups.map(((group, groupIndex) =>
                         <Group
+                            collapsed
                             key={group._id + roundindex}
                             group={group}
                             _id={group._id}

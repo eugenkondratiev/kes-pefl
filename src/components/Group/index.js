@@ -17,7 +17,7 @@ const tableCaptions = ["В", "Н", "П", "Гз", "Гп", "О"];
 
 function Group({ group, _id, delay, smallscreen, ...restProps }) {
 
-    const [groupID, setGroupID] = useState()
+    const [groupID, setGroupID] = useState(null)
     // console.log("### groupprops", group._id, _id, delay);
 
     // useDebounce(() => {
@@ -27,17 +27,19 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
     //     // setGroupID(group && group._id)
     // }, +delay, [_id])
 
-    useTimeout(() => {
-        // console.log("setGroupID - ", group._id);
+    // useTimeout(() => {
 
-        setGroupID(group && _id)
-        // setGroupID(group && group._id)
-    }, delay)
+    //     setGroupID(group && _id)
+    // }, delay)
 
 
     const [table, setTable] = useState()
 
-    const { cupData: groupData, isLoading: isGroupDataLoading, isError: isGroupDataError } = useData(cupById_REF, groupID, [groupID])
+    const {
+        cupData: groupData,
+        isLoading: isGroupDataLoading,
+        isError: isGroupDataError
+    } = useData(cupById_REF, groupID, [groupID], { notNullParameters: true })
 
 
     useEffect(() => {
@@ -104,7 +106,14 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
 
     if (!groupData && !group) return <Spin />
     if (!groupData && group && (!isGroupDataLoading || isGroupDataError)) return <Block
+        collapsed
         header={group.name}
+        onInflate={() => {
+            !groupData && setGroupID(prevGroupID => {
+                return group && _id ? group && _id : prevGroupID
+            })
+            console.log("###on Inflate simple block w/o content!", group, _id);
+        }}
     >
         {isGroupDataLoading && 'Загрузка '}
         {isGroupDataError && 'Ошибка загрузки из базы данных '}
@@ -113,7 +122,14 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
         {_id}
     </Block>
     return (
-        <Block header={groupData && groupData.name}>
+        <Block
+            collapsed
+            header={groupData && groupData.name}
+            onInflate={() => {
+                // alert(_id);
+                console.log("###on Inflate!", _id);
+            }}
+        >
             {/* <h4>
                 {groupData._id}
             </h4>
@@ -131,7 +147,7 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
             <div className={stl['group-table']}>
 
                 <div className={stl['table-line']}>
-                    <div className={stl['team-name']}><ClubLabel label smallscreen/></div>
+                    <div className={stl['team-name']}><ClubLabel label smallscreen /></div>
                     {groupData && groupData.pl.split('|').map((id, i) => {
                         return <div key={'logos' + i} className={cn(stl['table-cell'], stl['club-logo'])}>
                             {/* <span className={stl["club-logo"]} data-role="club-logo">
@@ -152,12 +168,12 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
                         return (
                             <div key={'row' + row._id} className={stl['table-line']}>
 
-                                <div className={stl['team-name']}><ClubLabel _id={row._id} smallscreen/></div>
+                                <div className={stl['team-name']}><ClubLabel _id={row._id} smallscreen /></div>
                                 {row.games.map((game, gameIndex) => {
                                     return game.firstGame
                                         ? <div key={"g" + row._id + gameIndex} className={stl['table-cell']}>
-                                            <GameScore _game={game.lastGame} />
-                                            <GameScore first reverse _game={game.firstGame} />
+                                            <GameScore onlyscore _game={game.lastGame} />
+                                            <GameScore onlyscore first reverse _game={game.firstGame} />
                                         </div>
                                         : <div key={"g" + row._id + gameIndex} className={cn(stl['table-cell'], stl['club-logo'])}>
                                             <ClubLogo id={row._id} />
@@ -177,13 +193,13 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
                     })
                 }
             </div>
-            <Block className={stl.gamesBlock} header="Games" collapsed>
+            <Block className={stl.gamesBlock} header="Список игр" collapsed>
 
                 {groupData && groupData.rounds.map((round, roundIndex) => {
                     return <div key={round._id + roundIndex} className={stl.games}>
 
                         <h4>{round.name}</h4>
-                        {round.games.map((g, gameIndex) => <Game key={round._id + round.roundID + gameIndex} game={g} smallscreen/>)}
+                        {round.games.map((g, gameIndex) => <Game key={round._id + round.roundID + gameIndex} game={g} smallscreen />)}
                     </div>
 
                 })}
