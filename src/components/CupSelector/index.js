@@ -113,10 +113,14 @@ function CupsSelector({ onUpdateId, ...restprops }) {
             {!nationsLoading && nations && cups && <form className={stl.root}>
                 {/* <div>{cupId && cupId}</div> */}
                 <Select
+                    showSearch
                     className={stl['cup-selector']}
                     style={{ width: "25ch" }}
                     loading={cupsLoading}
                     onChange={ffSelectHandler}
+                    filterOption={(input, option) =>
+                        option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                    }
                     placeholder="Выбор федерации"
                 >
                     {

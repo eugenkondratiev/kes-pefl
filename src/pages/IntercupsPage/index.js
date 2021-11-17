@@ -61,49 +61,6 @@ function InterCupsPage(props) {
 
             {/* <Cup _cupId={cupID} /> */}
             <InterCup _cupId={cupID} />
-            {/* <div>
-    <div >
-
-        <h3>{testCupIreland.name}</h3>
-        <h4>{`Сезон ${testCupIreland.season}`}</h4>
-        Раздел в разработке.
-        Пока тесты на ирландcком кубке
-    </div>
-    <img alt="flag" style={{ float: "right" }} src={getFlagById(93)} />
-</div> */}
-
-            {/* <Block header={testCupIreland._id}>
-    {testCupIreland.name}
-    {testCupIreland.season}
-    <img alt="flag" style={{ float: "right" }} src={getFlagById(93)} />
-    Раздел в разработке.
-    Пока тесты на ирландcком кубке
-
-</Block> */}
-
-            {/* {sortedRounds(testCupIreland.rounds).map((round, index) => {
-    return <CupRound key={index} round={round} />
-})} */}
-
-            {/* <Block header="">
-    Раздел в разработке
-    {cupsContext.loading && <Spin />}
-
-    {String(cupsContext.loading)}
-    {!cupsContext.loading && cupsContext.cups && <div>
-
-
-
-        <div>{JSON.stringify(cupsContext.getFfCupData(93, 'cup'))}</div>
-        <div>{JSON.stringify(cupsContext.getFfCupData(93, 'supercup'))}</div>
-        <div>{JSON.stringify(cupsContext.getFfCupData(172, 'extracup'))}</div>
-        <div>{JSON.stringify(cupsContext.getIntercupData(231))}</div>
-
-    </div>
-    }
-
-</Block> */}
-
         </LayerPage>
     );
 }

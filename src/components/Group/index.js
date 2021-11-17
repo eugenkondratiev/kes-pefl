@@ -1,5 +1,5 @@
 import { Spin } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import Block from '../Block';
 import ClubLabel from '../ClubLabel';
 import Game from '../Game';
@@ -42,7 +42,7 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
     } = useData(cupById_REF, groupID, [groupID], { notNullParameters: true })
 
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!groupData) return
         const _teamIndexes = Object.entries(groupData.pl.split('|'))
             // .map(_ => { return { [_[1]]: _[0] } })
