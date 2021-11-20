@@ -1,4 +1,4 @@
-import { Spin } from 'antd';
+import { AutoComplete, Spin } from 'antd';
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import Block from '../Block';
 import ClubLabel from '../ClubLabel';
@@ -123,45 +123,49 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
     return (
         <Block
             collapsed
-            header={groupData && groupData.name}
-            // onInflate={() => {
-            //     // alert(_id);
-            //     console.log("###on Inflate!", _id);
-            // }}
+            header={
+                groupData
+                    ? groupData.name
+                    : isGroupDataLoading ? "Загрузка"
+                        :
+                        isGroupDataError ? "Ошибка загрузки" : ""
+            }
         >
             {/* <h4>
-                {groupData._id}
-            </h4>
-            <h3>
                 {JSON.stringify(
-                    Object.entries(groupData.pl.split('|')).map(_ => { return { [_[1]]: _[0] } })
-                    , null, " ")}
-            </h3> */}
-            {/* <h3>
-                {JSON.stringify(
-                    table
-                    , null, "")}
-            </h3> */}
-            {/* <h2>Games</h2> */}
-            <div className={stl['group-table']}>
+                    {
+                        isLoading: isGroupDataLoading,
+                        isError: isGroupDataError
+                    }, null, " ")}
 
-                <div className={stl['table-line']}>
-                    <div className={stl['team-name']}><ClubLabel label smallscreen /></div>
-                    {groupData && groupData.pl.split('|').map((id, i) => {
-                        return <div key={'logos' + i} className={cn(stl['table-cell'], stl['club-logo'])}>
-                            {/* <span className={stl["club-logo"]} data-role="club-logo">
+            </h4> */}
+            <div className={stl['group-table']}>
+                {(isGroupDataError || isGroupDataLoading) &&
+                    <div style={{ width: "100%", margin: "0 auto" }}>
+                        <Spin style={{ width: "100%", margin: "0 auto" }} />
+                    </div>
+                }
+                {
+                    !isGroupDataLoading &&
+                    !isGroupDataError &&
+                    <div className={stl['table-line']}>
+                        <div className={stl['team-name']}><ClubLabel label smallscreen /></div>
+                        {groupData && groupData.pl.split('|').map((id, i) => {
+                            return <div key={'logos' + i} className={cn(stl['table-cell'], stl['club-logo'])}>
+                                {/* <span className={stl["club-logo"]} data-role="club-logo">
                                 <img src={getClubLogoById(id)} alt={id} />
 
                             </span> */}
-                            <ClubLogo id={id} />
-                        </div>
-                    })}
-                    {
-                        tableCaptions.map((label, index) =>
-                            <div key={"label" + index} className={stl['table-smallcell']}> {label}</div>
-                        )
-                    }
-                </div>
+                                <ClubLogo id={id} />
+                            </div>
+                        })}
+                        {
+                            tableCaptions.map((label, index) =>
+                                <div key={"label" + index} className={stl['table-smallcell']}> {label}</div>
+                            )
+                        }
+                    </div>
+                }
                 {
                     table && table.map(row => {
                         return (

@@ -15,8 +15,15 @@ export default function useData(endpoint, parameters, dependencies = [], options
                 if (options.notNullParameters && !parameters) {
 
                 } else {
+                    let answer
+                    try {
 
-                    const answer = await fetchApiData(`${endpoint}/${parameters && parameters}`)
+                        answer = await fetchApiData(`${endpoint}/${parameters && parameters}`)
+                    } catch (error) {
+                        console.log("#### fetchApiData error -", error.message);
+                        setIsError(true);
+
+                    }
                     if (answer.error) {
                         console.log("#### useData fetching error ", answer.error);
 
