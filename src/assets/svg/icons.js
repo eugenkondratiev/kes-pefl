@@ -6,13 +6,15 @@ import { ReactComponent as CupIcon } from './trophy-football-cup-26479.svg'
 import { ReactComponent as BallIcon } from './football-ball-svgrepo-com.svg'
 import { ReactComponent as StatIcon } from './statistics-svgrepo-com.svg'
 import { ReactComponent as CopyIcon } from './copy-svgrepo-com.svg'
+import { ReactComponent as UpIcon } from './up-svgrepo-com.svg'
 
 import AntdIcon from '../../components/AntdIcon';
 
-export const SvgPlayerIcon = (props) => <AntdIcon node={PlayerIcon} {...props}/>;
-export const SvgIntercupsIcon = (props) => <AntdIcon node={IntercupsIcon} {...props}/>;
-export const SvgCupsIcon = (props) => <AntdIcon node={CupIcon} {...props}/>;
-export const SvgBallIcon = (props) => <AntdIcon node={BallIcon} {...props}/>;
-export const SvgStatIcon = (props) => <AntdIcon node={StatIcon} {...props}/>;
-export const SvgCopyIcon = (props) => <AntdIcon node={CopyIcon} {...props}/>;
+export const SvgPlayerIcon = (props) => <AntdIcon node={PlayerIcon} {...props} />;
+export const SvgIntercupsIcon = (props) => <AntdIcon node={IntercupsIcon} {...props} />;
+export const SvgCupsIcon = (props) => <AntdIcon node={CupIcon} {...props} />;
+export const SvgBallIcon = (props) => <AntdIcon node={BallIcon} {...props} />;
+export const SvgStatIcon = (props) => <AntdIcon node={StatIcon} {...props} />;
+export const SvgCopyIcon = (props) => <AntdIcon node={CopyIcon} {...props} />;
+export const SvgUpIcon = (props) => <AntdIcon node={UpIcon} viewbox="200 200 600 300" {...props} />;
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
-function AntdIcon({node,...rest}) {
+function AntdIcon({node,viewbox, ...rest}) {
     const Node = node;
 
     return (
         <span role="img" aria-label="user" className="anticon anticon-user">
             <Node 
-            viewBox="50 0 400 480" 
+            viewBox={ viewbox || "50 0 400 480"} 
             focusable="false" 
             className="" 
             data-icon="user" 

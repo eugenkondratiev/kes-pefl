@@ -1,0 +1,22 @@
+@import '../../assets/styles/global';
+
+.root {
+    position: fixed;
+    right: .5em;
+    bottom: 5em;
+
+    & .scroll-up-button {
+        width: 3em;
+        height: 3em;
+        background-color: $second;
+        color: $third;
+        border-radius: 30%;
+        cursor: pointer;
+        text-align: center;
+        padding-top: .5em;
+
+        &:hover {
+            transform: scale(1.1);
+        }
+    }
+}

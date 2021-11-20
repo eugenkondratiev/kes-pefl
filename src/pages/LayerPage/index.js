@@ -5,6 +5,7 @@ import stl from './LayerPage.module.scss';
 
 
 import MainFooter from '../../components/MainFooter';
+import ScrollUp from '../../components/ScrollUp';
 
 
 const { Header, Content } = Layout;
@@ -29,6 +30,7 @@ function LayerPage(props) {
             {props.children}
           </div>
         </Content>
+        <ScrollUp setpoint='120'/>
         <MainFooter />
       </Layout>
   );
