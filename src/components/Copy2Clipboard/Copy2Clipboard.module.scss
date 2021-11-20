@@ -1,0 +1,10 @@
+button.root.ant-btn-circle-outline {
+    box-shadow: 1px 1px 10px 2px lightslategrey;
+
+    background-color: #3b7c25;
+
+    &:hover {
+        background-color: #3b7c25;
+        transform: scale(1.2);
+    }
+}

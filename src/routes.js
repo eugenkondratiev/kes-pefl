@@ -15,8 +15,9 @@ export const LinkEnum = {
     PLAYERS : '/players',
     CUPS : '/cups',
     INTERNATIONAL : '/intercups',
-    CUPID : 'cup/:id',
-    ONECUP: 'cups/:season/:ff/:type'
+    INTERCUP : '/intercup/:id',
+    CUPID : '/cup/:id',
+    ONECUP: '/cups/:season/:ff/:type'
 
 }  
 
@@ -26,7 +27,9 @@ const routes = {
     [LinkEnum.EMPTY]: () => <EmptyPage />,
     [LinkEnum.LAYOUT]: () => <LayerPage> XXX 2021 XXX</LayerPage>,
     [LinkEnum.CUPS]:() =><CupsPage />,
+    [LinkEnum.CUPID]:({id}) =><CupsPage _cupid={id}/>,
     [LinkEnum.INTERNATIONAL]:() =><InterCupsPage/>,
+    [LinkEnum.INTERCUP]:({id}) =><InterCupsPage _cupid={id}/>,
     [LinkEnum.PLAYERS]:() =><PlayersPage />,
     [LinkEnum.HOME]: () => <HomePage/>
 }

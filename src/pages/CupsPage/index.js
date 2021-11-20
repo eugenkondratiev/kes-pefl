@@ -1,5 +1,5 @@
 
-import React, {  useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 // import Block from '../../components/Block';
 import Cup from '../../components/Cup';
 import LayerPage from '../LayerPage';
@@ -9,11 +9,10 @@ import CupsSelector from '../../components/CupSelector';
 // import { getFlagById } from '../../utils/pefl-stings';
 
 
-function CupsPage(props) {
+function CupsPage({ _cupid, ...props }) {
 
     // const { loading: cupsLoading, cups, getFfCupData, getCups, getFfCups } = useContext(CupsContext);
     // const { loading: cupsLoading, cups } = useContext(CupsContext);
-
 
     // const cupsContext = useContext(CupsContext);
     // const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
@@ -26,6 +25,9 @@ function CupsPage(props) {
     // const idRef = useRef();
 
     const [cupID, setCupID] = useState();
+    useEffect(() => {
+        _cupid && setCupID(_cupid);
+    }, [_cupid])
 
     // const sortedRounds = useCallback(_ => {
     //     const sorted = [..._].reverse()
@@ -46,7 +48,7 @@ function CupsPage(props) {
         <LayerPage mainCaption="История кубков">
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 
-            <CupsSelector onUpdateId={updateCupId} />
+            <CupsSelector onUpdateId={updateCupId} initCupId={_cupid} />
 
             <Cup _cupId={cupID} />
 

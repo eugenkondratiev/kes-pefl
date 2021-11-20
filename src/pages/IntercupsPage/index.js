@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Block from '../../components/Block';
 import LayerPage from '../LayerPage';
 
@@ -15,7 +15,7 @@ import IntercupsSelector from '../../components/IntercupSelector';
 // import { ClubsContext } from '../../context/clubs-context';
 // import { getFlagById } from '../../utils/pefl-stings';
 
-function InterCupsPage(props) {
+function InterCupsPage({ _cupid, ...props }) {
 
     // const { loading: cupsLoading, cups, getFfCupData, getCups, getFfCups } = useContext(CupsContext);
     // const { loading: cupsLoading, cups } = useContext(CupsContext);
@@ -37,6 +37,11 @@ function InterCupsPage(props) {
     //     console.log("sorted  - ", sorted);
     //     return sorted
     // }, [])
+    console.log("_cupId - ", _cupid);
+
+    useEffect(() => {
+        _cupid && setCupID(_cupid);
+    }, [_cupid])
 
     const updateCupId = (_id) => {
 
@@ -57,7 +62,7 @@ function InterCupsPage(props) {
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 
-            <IntercupsSelector onUpdateId={updateCupId} />
+            <IntercupsSelector onUpdateId={updateCupId} initCupId={_cupid}/>
 
             {/* <Cup _cupId={cupID} /> */}
             <InterCup _cupId={cupID} />

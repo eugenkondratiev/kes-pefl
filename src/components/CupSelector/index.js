@@ -5,25 +5,26 @@ import { CupsContext } from '../../context/cups-context';
 // import testCupIreland from '../../assets/tests/cup_93_19';
 import { NationsContext } from '../../context/nation-context';
 import stl from './CupSelector.module.scss';
+import Copy2Clipboard from '../Copy2Clipboard';
 
 const { Option } = Select;
 
 
 
-function CupsSelector({ onUpdateId, ...restprops }) {
+function CupsSelector({ onUpdateId, initCupId, ...restprops }) {
 
     const cupsContext = useContext(CupsContext);
     const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
 
     const { loading: nationsLoading, getNation, nations } = useContext(NationsContext);
-
+    const [initType, initFfId, initSeason] = initCupId ? initCupId.split('_') : [];
 
     const [cupId, setCupId] = useState(null);
-    const [ffId, setFfId] = useState(null);
+    const [ffId, setFfId] = useState(initFfId);
 
-    const [cupType, setCupTupe] = useState(null);
+    const [cupType, setCupTupe] = useState(initType);
 
-    const [cupSeason, setCupSeason] = useState(null);
+    const [cupSeason, setCupSeason] = useState(initSeason);
 
     // const [cupData, setCupData] = useState(null);
 
@@ -160,6 +161,9 @@ function CupsSelector({ onUpdateId, ...restprops }) {
                         })
                     }
                 </Select>}
+                {cupType && ffId && cupSeason && <Copy2Clipboard
+                    copytext={`${document.location.origin}/cup/${cupType === "extracup" ? "cup" : cupType}_${ffId}_${cupSeason}`}
+                />}
             </form>
             }
         </Block>

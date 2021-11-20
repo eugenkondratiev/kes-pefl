@@ -5,6 +5,7 @@ import { CupsContext } from '../../context/cups-context';
 // import testCupIreland from '../../assets/tests/cup_93_19';
 import { NationsContext } from '../../context/nation-context';
 import stl from './IntercupSelector.module.scss';
+import Copy2Clipboard from '../Copy2Clipboard';
 
 const { Option } = Select;
 
@@ -110,6 +111,9 @@ function IntercupsSelector({ onUpdateId, ...restprops }) {
                         })
                     }
                 </Select>}
+                {intercupId && cupSeason && <Copy2Clipboard
+                    copytext={`${document.location.origin}/intercup/ec_${intercupId}_${cupSeason}`}
+                />}
             </form>
             }
         </Block>
