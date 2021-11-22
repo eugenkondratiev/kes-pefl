@@ -10,7 +10,7 @@ const { Option } = Select;
 
 
 
-function IntercupsSelector({ onUpdateId, ...restprops }) {
+function IntercupsSelector({ onUpdateId, onFilteredNation, ...restprops }) {
 
     const cupsContext = useContext(CupsContext);
     const { loading: cupsLoading, intercups: _cups, cups, getIntercupData, getIntercups } = cupsContext;
@@ -92,7 +92,7 @@ function IntercupsSelector({ onUpdateId, ...restprops }) {
 
     const ffSelectHandler = (value) => {
         setFilteredNation(value);
-
+        onFilteredNation(value)
     }
 
     return (

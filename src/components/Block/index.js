@@ -28,7 +28,7 @@ function Block({ header, collapsed, children, onInflate, logo, ...props }) {
 
                 clickHeader={toggleCollapsed}
             >{header || " OOOOOPS !!!"}
-                {logo}</Header>
+                {isCollapsed && logo}</Header>
             <div className={stl.content}>
                 {children}
             </div>

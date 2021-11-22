@@ -31,6 +31,7 @@ function InterCupsPage({ _cupid, ...props }) {
     // const idRef = useRef();
 
     const [cupID, setCupID] = useState();
+    const [nationFilter, setNationFilter] = useState();
 
     // const sortedRounds = useCallback(_ => {
     //     const sorted = [..._].reverse()
@@ -47,7 +48,9 @@ function InterCupsPage({ _cupid, ...props }) {
 
         setCupID(_id)
     }
-
+    const filterByNation = (nation) => {
+        setNationFilter(nation)
+    }
 
     return (
         <LayerPage mainCaption="История международных кубков">
@@ -62,10 +65,17 @@ function InterCupsPage({ _cupid, ...props }) {
             </Block>
             {/* <h3 style={{ textAlign: 'center', width: "100%", justifyContent: "center" }}>{cupID && cupID}</h3> */}
 
-            <IntercupsSelector onUpdateId={updateCupId} initCupId={_cupid}/>
+            <IntercupsSelector
+                onUpdateId={updateCupId}
+                onFilteredNation={(nation) => { filterByNation(nation) }}
+                initCupId={_cupid}
+            />
 
             {/* <Cup _cupId={cupID} /> */}
-            <InterCup _cupId={cupID} />
+            <InterCup
+                _cupId={cupID}
+                filterednation={nationFilter}
+            />
         </LayerPage>
     );
 }

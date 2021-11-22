@@ -17,26 +17,37 @@ import { ClubsContext } from '../../context/clubs-context';
 
 const tableCaptions = ["В", "Н", "П", "Гз", "Гп", "О"];
 
-function Group({ group, _id, delay, smallscreen, teams, ...restProps }) {
+function Group({ group, _id, delay, smallscreen, teams, filterednation, ...restProps }) {
 
     const { loading: nationsLoading, getNation, nations } = useContext(NationsContext)
-    const { loading: clubsLoading, getClub, getClubIdByName, getClubName } = useContext(ClubsContext)
-    const formClubLogo = (id, index) => <span
-        key={'groupteam' + index + id}
+    const { loading: clubsLoading, getClub, getClubIdByName, getClubName, getClubFF } = useContext(ClubsContext)
+    const formClubLogo = (id) => <span
+        key={'groupteam' + id}
         className={stl["club-logo"]}
         data-role="club-logo"
-        title={getClubName(_id)}>
+        title={getClubName(id)}>
         <img src={getClubLogoById(id)} alt={id} />
 
     </span>
-
+    const formGroupLogos = (teams) => {
+        const groupTeams = formGroupsTeams(teams)
+        if (!groupTeams) return null
+        return groupTeams.map(team => formClubLogo(team))
+    }
+    const someTeamIsFromFilteredNation = (teams, checknation) => {
+        if (!checknation || parseInt(checknation) < 1) return true
+        const groupTeams = formGroupsTeams(teams)
+        if (!groupTeams) return null
+        return groupTeams.some(team => getClubFF(team) === +checknation)
+    }
     const formGroupsTeams = (teams) => {
         if (!teams) return null
         const _teamsList = teams.split('|')
         // if (parseInt(_teamsList[0])) return null
         return _teamsList.map(name => {
-            const _id = parseInt(name) ? +_id : getClubIdByName(name);
-            return formClubLogo(_id)
+            const _id = parseInt(name) ? +name : getClubIdByName(name);
+            return _id
+            // return formClubLogo(_id)
         })
     }
     const [groupID, setGroupID] = useState(null)
@@ -126,11 +137,13 @@ function Group({ group, _id, delay, smallscreen, teams, ...restProps }) {
         // console.log("_teamINdexes ", Object.entries(groupData.pl.split('|')));
     }, [groupData])
 
+    if (!someTeamIsFromFilteredNation(teams, filterednation)) return null
     if (!groupData && !group) return <Spin />
+
     if (!groupData && group && (!isGroupDataLoading || isGroupDataError)) return <Block
         collapsed
         header={group.name}
-        logo={formGroupsTeams(teams)}
+        logo={formGroupLogos(teams)}
 
         onInflate={() => {
             !groupData && setGroupID(prevGroupID => {
@@ -150,12 +163,12 @@ function Group({ group, _id, delay, smallscreen, teams, ...restProps }) {
             collapsed
             header={
                 groupData
-                    ? groupData.name
+                    ? group.name
                     : isGroupDataLoading ? "Загрузка"
                         :
                         isGroupDataError ? "Ошибка загрузки" : ""
             }
-            logo={formGroupsTeams(teams)}
+            logo={formGroupLogos(teams)}
         >
             {/* <h4>
                 {JSON.stringify(

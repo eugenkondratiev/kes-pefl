@@ -10,7 +10,7 @@ import stl from './InterCup.module.scss';
 
 import Group from '../Group';
 
-function InterCup({ _cupId, children, ...restprops }) {
+function InterCup({ _cupId, children, filterednation, ...restprops }) {
     // const cupIdRef = useRef()
     // const cupDataRef = useRef();
 
@@ -118,15 +118,20 @@ function InterCup({ _cupId, children, ...restprops }) {
                             group={group}
                             _id={group._id}
                             teams={group.pl}
+                            filterednation={filterednation}
                         // delay={100 + groupIndex * 500}
                         />
-            }))
+                    }))
                     // ? round.groups.map(((group, groupIndex) => <Group key={group._id + roundindex} groupData={testCupGroups[group._id]} delay={100 + groupIndex * 100} />))
                     // ? round.groups.map(((group, groupIndex) => {
                     //     console.log("OLOLOOLO groups - ", group);
                     //     return <Block header={group.name}>{group._id} {100 + groupIndex * 100}</Block>
                     // }))
-                    : <CupRound key={"CupRound" + roundindex} round={round} />
+                    : <CupRound
+                        key={"CupRound" + roundindex}
+                        round={round}
+                        filterednation={filterednation}
+                    />
                 // : <CupRound collapsed={round.name !== "Финал"} key={"CupRound" + roundindex} round={round} />
 
             })}

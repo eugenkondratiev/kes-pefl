@@ -22,6 +22,10 @@ export const ClubsProvider = ({ children }) => {
     const getClubName = _id => {
         return clubs[+_id] && clubs[_id][0]
     }
+    const getClubFF = _id => {
+        return clubs[+_id] && +clubs[_id][2]
+    }
+
     const getClubIdByName = _name => {
         return clubs.findIndex(_club => _club && _club[0] && _club[0] === _name)
     }
@@ -94,7 +98,8 @@ export const ClubsProvider = ({ children }) => {
                 loading,
                 getClubIdByName,
                 getClubName,
-                getClub
+                getClub,
+                getClubFF
             }}
         >
             {children}
