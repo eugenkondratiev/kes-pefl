@@ -155,9 +155,6 @@ function IntercupsSelector({ onUpdateId, onFilteredNation, ...restprops }) {
                         }
 
                     </Select>}
-                <div>
-                    {filteredNation}
-                </div>
             </form>
             }
         </Block>

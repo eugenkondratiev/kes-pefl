@@ -32,7 +32,7 @@ function Cup({ _cupId, children, ...restprops }) {
             })
 
             if (round.name && round.name.match(/инал/i) && round.name === arr[index + 1].name) {
-                console.log(" ### delete round ", index + 1, arr[index + 1].name, arr[index + 1]);
+                // console.log(" ### delete round ", index + 1, arr[index + 1].name, arr[index + 1]);
                 roundsToDelete.push(index + 1)
             }
         });

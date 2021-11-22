@@ -1,44 +1,14 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import Block from '../../components/Block';
 import LayerPage from '../LayerPage';
 
-// import Block from '../../components/Block';
-import Cup from '../../components/Cup';
-import { CupsContext } from '../../context/cups-context';
-// import testCupIreland from '../../assets/tests/cup_93_19';
-// import { NationsContext } from '../../context/nation-context';
-import CupsSelector from '../../components/CupSelector';
 import InterCup from '../../components/InterCup';
 import IntercupsSelector from '../../components/IntercupSelector';
-// import Game from '../../components/Game';
-// import CupRound from '../../components/CupRound';
-// import { ClubsContext } from '../../context/clubs-context';
-// import { getFlagById } from '../../utils/pefl-stings';
 
 function InterCupsPage({ _cupid, ...props }) {
 
-    // const { loading: cupsLoading, cups, getFfCupData, getCups, getFfCups } = useContext(CupsContext);
-    // const { loading: cupsLoading, cups } = useContext(CupsContext);
-    const cupsContext = useContext(CupsContext);
-    const { loading: cupsLoading, cups, getFfCups, getFfCupData } = cupsContext;
-
-    // const { loading: nationsLoading, getNation, nations } = useContext(NationsContext);
-
-    // const { loading: clubsLoading, clubs } = useContext(ClubsContext)
-
-
-
-    // const idRef = useRef();
-
     const [cupID, setCupID] = useState();
     const [nationFilter, setNationFilter] = useState();
-
-    // const sortedRounds = useCallback(_ => {
-    //     const sorted = [..._].reverse()
-    //     console.log("sorted  - ", sorted);
-    //     return sorted
-    // }, [])
-    console.log("_cupId - ", _cupid);
 
     useEffect(() => {
         _cupid && setCupID(_cupid);
