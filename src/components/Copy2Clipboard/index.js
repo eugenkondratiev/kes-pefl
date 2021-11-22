@@ -17,7 +17,7 @@ function Copy2Clipboard({ copytext}) {
                 }
             }
             size='middle'
-            shape='circle-outline'
+            shape='circle'
             icon={<SvgCopyIcon />}
             title='Скопировать cсылку с буфер обмена'
         >

@@ -21,7 +21,7 @@ function InterCup({ _cupId, children, ...restprops }) {
         setCupID(_cupId)
     }, 2000, [_cupId])
 
-    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID],{ notNullParameters: true })
+    const { cupData, isLoading, isError } = useData(cupById_REF, cupID, [cupID], { notNullParameters: true })
     // const [isLoading, setIsLoading] = useState(true)
     // const [cupData, setcupData] = useState()
     const [cupGroupsData, setcupGroupsData] = useState()
@@ -30,7 +30,7 @@ function InterCup({ _cupId, children, ...restprops }) {
 
     // useEffect(() => {
     //     ;
-        // console.log("intercupData  - ", cupData);
+    // console.log("intercupData  - ", cupData);
     // }, [cupData])
 
     // useTimeout(() => {
@@ -111,18 +111,20 @@ function InterCup({ _cupId, children, ...restprops }) {
             {cupData && cupID && cupData.rounds && sortedRounds(cupData.rounds).map((round, roundindex) => {
                 // if (!round.groups) return <div>{round.roundID}</div>
                 return round.groups
-                    ? round.groups.map(((group, groupIndex) =>
-                        <Group
+                    ? round.groups.map(((group, groupIndex) => {
+                        return <Group
                             collapsed
                             key={group._id + roundindex}
                             group={group}
                             _id={group._id}
-                            delay={100 + groupIndex * 500}
-                        />))
+                            teams={group.pl}
+                        // delay={100 + groupIndex * 500}
+                        />
+            }))
                     // ? round.groups.map(((group, groupIndex) => <Group key={group._id + roundindex} groupData={testCupGroups[group._id]} delay={100 + groupIndex * 100} />))
                     // ? round.groups.map(((group, groupIndex) => {
                     //     console.log("OLOLOOLO groups - ", group);
-                    //     return <Block header={group.name}>{group._id} {100 + groupIndex*100}</Block>
+                    //     return <Block header={group.name}>{group._id} {100 + groupIndex * 100}</Block>
                     // }))
                     : <CupRound key={"CupRound" + roundindex} round={round} />
                 // : <CupRound collapsed={round.name !== "Финал"} key={"CupRound" + roundindex} round={round} />

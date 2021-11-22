@@ -5,7 +5,7 @@ import stl from './Block.module.scss';
 import cn from 'classnames';
 import useDebounce from '../../hooks/useDebounce';
 
-function Block({ header, collapsed, children, onInflate, ...props }) {
+function Block({ header, collapsed, children, onInflate, logo, ...props }) {
     const toggleCollapsed = useCallback(
         () => {
             setisCollapsed(prevCollapsed => {
@@ -27,7 +27,8 @@ function Block({ header, collapsed, children, onInflate, ...props }) {
             <Header
 
                 clickHeader={toggleCollapsed}
-            >{header || " OOOOOPS !!!"}</Header>
+            >{header || " OOOOOPS !!!"}
+                {logo}</Header>
             <div className={stl.content}>
                 {children}
             </div>

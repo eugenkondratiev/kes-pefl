@@ -1,5 +1,5 @@
 import { AutoComplete, Spin } from 'antd';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import Block from '../Block';
 import ClubLabel from '../ClubLabel';
 import Game from '../Game';
@@ -12,11 +12,33 @@ import useDebounce from '../../hooks/useDebounce';
 import useTimeout from '../../hooks/useTimeout';
 import useData from '../../hooks/useCupData';
 import { cupById_REF } from '../../utils/constants';
+import { NationsContext } from '../../context/nation-context';
+import { ClubsContext } from '../../context/clubs-context';
 
 const tableCaptions = ["В", "Н", "П", "Гз", "Гп", "О"];
 
-function Group({ group, _id, delay, smallscreen, ...restProps }) {
+function Group({ group, _id, delay, smallscreen, teams, ...restProps }) {
 
+    const { loading: nationsLoading, getNation, nations } = useContext(NationsContext)
+    const { loading: clubsLoading, getClub, getClubIdByName, getClubName } = useContext(ClubsContext)
+    const formClubLogo = (id, index) => <span
+        key={'groupteam' + index + id}
+        className={stl["club-logo"]}
+        data-role="club-logo"
+        title={getClubName(_id)}>
+        <img src={getClubLogoById(id)} alt={id} />
+
+    </span>
+
+    const formGroupsTeams = (teams) => {
+        if (!teams) return null
+        const _teamsList = teams.split('|')
+        // if (parseInt(_teamsList[0])) return null
+        return _teamsList.map(name => {
+            const _id = parseInt(name) ? +_id : getClubIdByName(name);
+            return formClubLogo(_id)
+        })
+    }
     const [groupID, setGroupID] = useState(null)
     // console.log("### groupprops", group._id, _id, delay);
 
@@ -108,6 +130,8 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
     if (!groupData && group && (!isGroupDataLoading || isGroupDataError)) return <Block
         collapsed
         header={group.name}
+        logo={formGroupsTeams(teams)}
+
         onInflate={() => {
             !groupData && setGroupID(prevGroupID => {
                 return group && _id ? group && _id : prevGroupID
@@ -121,6 +145,7 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
         {_id}
     </Block>
     return (
+
         <Block
             collapsed
             header={
@@ -130,6 +155,7 @@ function Group({ group, _id, delay, smallscreen, ...restProps }) {
                         :
                         isGroupDataError ? "Ошибка загрузки" : ""
             }
+            logo={formGroupsTeams(teams)}
         >
             {/* <h4>
                 {JSON.stringify(

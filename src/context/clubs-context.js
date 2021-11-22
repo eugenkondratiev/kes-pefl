@@ -17,8 +17,13 @@ export const ClubsProvider = ({ children }) => {
     const [loading, setLoading] = useState(false)
 
     const getClub = _id => {
-        // console.log("getClub  done ", _id);
         return clubs[+_id]
+    }
+    const getClubName = _id => {
+        return clubs[+_id] && clubs[_id][0]
+    }
+    const getClubIdByName = _name => {
+        return clubs.findIndex(_club => _club && _club[0] && _club[0] === _name)
     }
 
     const { nations } = useContext(NationsContext)
@@ -87,6 +92,8 @@ export const ClubsProvider = ({ children }) => {
             value={{
                 clubs,
                 loading,
+                getClubIdByName,
+                getClubName,
                 getClub
             }}
         >
