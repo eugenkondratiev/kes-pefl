@@ -1,0 +1,10 @@
+button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button {
+    min-width: 1rem;
+    box-shadow: 1px 1px 2px 2px rgb(154, 209, 177);
+    color: #3b7c25;
+
+}
+
+button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button:hover {
+    transform: scale(1.2);
+}
