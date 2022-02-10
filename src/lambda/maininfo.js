@@ -65,7 +65,25 @@ exports.handler = async function (event, context) {
                 }
             }
 
-        } else {
+        } else if (_type === 'pairs') {
+            try {
+                const _pairs = await getMongoData('info', { pairs: { $exists: true } });
+                console.log("### pairs", _pairs)
+                _resp = _pairs
+            } catch (error) {
+                console.log(_type + " error", error)
+                return {
+                    statusCode: 500,
+                    body: JSON.stringify({
+                        count: -1,
+                        error: "PAIRS_GETTING_FAULT"
+                    }
+                        , null, " ")
+                }
+
+            }
+        }
+        else {
             console.log("maininfo/ NO PARAMETRS type error")
             return formErrorResponceObject(WRONG_PARAMETERS_ERROR)
         }

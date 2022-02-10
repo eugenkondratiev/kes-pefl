@@ -44,7 +44,7 @@ exports.handler = async function (event, context) {
         }
 
     } catch (error) {
-        console.log("/bor/ error", error)
+        console.log("/allbase/ error", error)
         return {
             statusCode: 500,
             body: JSON.stringify({
