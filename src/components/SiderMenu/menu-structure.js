@@ -37,6 +37,20 @@ export default [
         link: LinkEnum.INTERNATIONAL,
         icon: <SvgIntercupsIcon />
     },
+    {
+        _id: 5,
+        title: "Мастер таблиц",
+        link: LinkEnum.TABLESMASTER,
+        icon: <HomeOutlined />
+        // icon: <Icon component={PlayerIcon} />
+    },
+    {
+        _id: 6,
+        title: "Fixtures",
+        link: LinkEnum.FIXTURES,
+        icon: <HomeOutlined />
+        // icon: <Icon component={PlayerIcon} />
+    },
     // {
     //     _id: 5,
     //     title: "Тесты",
