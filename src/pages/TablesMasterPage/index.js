@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Block from '../../components/Block';
+import Copy2Clipboard from '../../components/Copy2Clipboard';
+import PasteFromClipboard from '../../components/PasteFromClipboard';
 import StyledButton from '../../components/StyledButton';
 import LayerPage from '../LayerPage';
+import stl from "./TablesMasterPage.scss"
 
 function TablesMasterPage(props) {
+
+    const rowDataRef = useRef(null)
+    const rowDataPastedFromClipboardRef = useRef(false)
+
+    const [rowValue, setRowValue] = useState("")
+    useEffect(() => {
+        console.log("rowValue chanched do smth");;
+    }, [rowValue])
+
     return (
         <LayerPage mainCaption="Мастер создания таблиц для pefl">
             <Block header="Ждем не торопим ©">
@@ -23,6 +35,39 @@ function TablesMasterPage(props) {
                     <a target='blank' href='https://eugenkondratiev.github.io/sandbox/pefltables'>Перейти</a>
                 </StyledButton>
             </Block>
+            <textarea
+                ref={rowDataRef} value={rowValue}
+                style={{ width: "30rem", minHeight: "10rem" }}
+                onChange={
+                    (e) => {
+                        console.log("textarea changed");
+                        setRowValue(e.target.value)
+
+                        // if (!rowDataPastedFromClipboardRef.current) {
+
+                        // } else {
+                        //     rowDataPastedFromClipboardRef.current = false
+                        // }
+                    }
+                }
+            >
+            </textarea>
+            <div>
+                {rowValue}
+            </div>
+            <PasteFromClipboard
+                cb={
+                    (text) => {
+                        console.log("text to paste");
+                        // rowDataRef.current.value = 
+                        setRowValue(text)
+                        //TODO useDebounce
+                    }
+                }
+            />
+            <Copy2Clipboard
+                copytext={rowDataRef && rowDataRef.current && rowDataRef.current.value}
+            />
         </LayerPage>
     );
 }

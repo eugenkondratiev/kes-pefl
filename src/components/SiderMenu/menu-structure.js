@@ -3,10 +3,10 @@ import React from 'react';
 import { LinkEnum } from "../../routes";
 
 // import { ReactComponent as PlayerIcon } from '../../assets/svg/football-player-running-behind-the-ball-26792.svg'
-import { SvgPlayerIcon, SvgIntercupsIcon, SvgCupsIcon } from '../../assets/svg/icons';
+import { SvgPlayerIcon, SvgIntercupsIcon, SvgCupsIcon, SvgTablesIcon, SvgTournamentIcon } from '../../assets/svg/icons';
 
 
-import { VideoCameraOutlined, HomeOutlined }  from '@ant-design/icons';
+import { VideoCameraOutlined, HomeOutlined } from '@ant-design/icons';
 
 // import Icon from '@ant-design/icons';
 // const { UploadOutlined, UserOutlined, VideoCameraOutlined, HomeOutlined } = Icon;
@@ -23,7 +23,7 @@ export default [
         _id: 2,
         title: "Игроки",
         link: LinkEnum.PLAYERS,
-        icon: <SvgPlayerIcon/>
+        icon: <SvgPlayerIcon />
     },
     {
         _id: 3,
@@ -41,14 +41,14 @@ export default [
         _id: 5,
         title: "Мастер таблиц",
         link: LinkEnum.TABLESMASTER,
-        icon: <HomeOutlined />
+        icon: <SvgTablesIcon />
         // icon: <Icon component={PlayerIcon} />
     },
     {
         _id: 6,
         title: "Fixtures",
         link: LinkEnum.FIXTURES,
-        icon: <HomeOutlined />
+        icon: <SvgTournamentIcon />
         // icon: <Icon component={PlayerIcon} />
     },
     // {
