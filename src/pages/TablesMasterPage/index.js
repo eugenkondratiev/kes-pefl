@@ -35,39 +35,45 @@ function TablesMasterPage(props) {
                     <a target='blank' href='https://eugenkondratiev.github.io/sandbox/pefltables'>Перейти</a>
                 </StyledButton>
             </Block>
-            <textarea
-                ref={rowDataRef} value={rowValue}
-                style={{ width: "30rem", minHeight: "10rem" }}
-                onChange={
-                    (e) => {
-                        console.log("textarea changed");
-                        setRowValue(e.target.value)
+            <Block>
+                <div className={stl["area-wrapper"]}>
 
-                        // if (!rowDataPastedFromClipboardRef.current) {
+                    <textarea
+                        ref={rowDataRef} value={rowValue}
+                        style={{ width: "30rem", minHeight: "10rem" }}
+                        onChange={
+                            (e) => {
+                                console.log("textarea changed");
+                                setRowValue(e.target.value)
 
-                        // } else {
-                        //     rowDataPastedFromClipboardRef.current = false
-                        // }
-                    }
-                }
-            >
-            </textarea>
-            <div>
-                {rowValue}
-            </div>
-            <PasteFromClipboard
-                cb={
-                    (text) => {
-                        console.log("text to paste");
-                        // rowDataRef.current.value = 
-                        setRowValue(text)
-                        //TODO useDebounce
-                    }
-                }
-            />
-            <Copy2Clipboard
-                copytext={rowDataRef && rowDataRef.current && rowDataRef.current.value}
-            />
+                                // if (!rowDataPastedFromClipboardRef.current) {
+
+                                // } else {
+                                //     rowDataPastedFromClipboardRef.current = false
+                                // }
+                            }
+                        }
+                    >
+                    </textarea>
+                    <div className={stl['controls-wrapper']}>
+                        <PasteFromClipboard
+                            className="p7modify"
+                            cb={
+                                (text) => {
+                                    console.log("text to paste");
+                                    // rowDataRef.current.value = 
+                                    setRowValue(text)
+                                    //TODO useDebounce
+                                }
+                            }
+                        />
+                        <Copy2Clipboard
+                            className="p7modify"
+                            copytext={rowDataRef && rowDataRef.current && rowDataRef.current.value}
+                        />
+                    </div>
+                </div>
+            </Block>
         </LayerPage>
     );
 }

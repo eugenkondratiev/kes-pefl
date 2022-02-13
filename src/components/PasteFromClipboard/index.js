@@ -9,12 +9,13 @@ function PasteFromClipboard({ cb, _title = 'Вставить данные из �
 
     return (
         <StyledButton
+            // style={{ padding: "7px" }}
             onClick={
                 () => {
                     // console.log(getTitle())
                     navigator.clipboard.readText().then(
                         cliptext => cb(cliptext)
-                    ).catch(e=>{
+                    ).catch(e => {
                         console.log("####readText error -", e);
                     })
                 }
