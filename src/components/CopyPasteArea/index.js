@@ -9,6 +9,7 @@ import useDebounce from '../../hooks/useDebounce';
 function CopyPasteArea({
     readonly = false, iscopy = true, ispaste = false,
     back = "#f0f2f5",
+    onDataChange,
     ...props
 }) {
 
@@ -19,7 +20,7 @@ function CopyPasteArea({
     const [rowValue, setRowValue] = useState("")
 
     useDebounce(() => {
-        console.log("rowValue chanched do smth");;
+        typeof onDataChange === 'function' && onDataChange(rowValue) 
         FitToContent(rowDataRef.current, 1024)
             ;
     }, 1000, [rowValue])
@@ -38,7 +39,7 @@ function CopyPasteArea({
                 }}
                 onChange={
                     (e) => {
-                        console.log("textarea changed");
+                        // console.log("textarea changed");
                         setRowValue(e.target.value)
                     }
                 }
@@ -49,7 +50,7 @@ function CopyPasteArea({
                     className="p7modify"
                     cb={
                         (text) => {
-                            console.log("text to paste");
+                            // console.log("text to paste");
                             setRowValue(text)
                         }
                     }

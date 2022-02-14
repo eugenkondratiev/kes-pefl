@@ -17,6 +17,10 @@ function TablesMasterPage(props) {
     //     console.log("rowValue chanched do smth");;
     // }, [rowValue])
 
+    function onChangeRowData(text) {
+        console.log("rowValue changed to ", text);;
+
+    }
     return (
         <LayerPage mainCaption="Мастер создания таблиц для pefl">
 
@@ -25,7 +29,8 @@ function TablesMasterPage(props) {
                 <CopyPasteArea
                     // iscopy={false} 
                     ispaste
-                    />
+                    onDataChange={onChangeRowData}
+                />
             </Block>
 
             <Block
