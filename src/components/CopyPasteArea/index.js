@@ -7,9 +7,10 @@ import FitToContent from './text-area-fit-2content';
 import useDebounce from '../../hooks/useDebounce';
 
 function CopyPasteArea({
-    readonly = false, iscopy = true, ispaste = false,
+    readonly = false, iscopy = true, ispaste = false, resize = false,
     back = "#f0f2f5",
     onDataChange,
+    data = "",
     ...props
 }) {
 
@@ -17,13 +18,17 @@ function CopyPasteArea({
     const rowDataRef = useRef(null)
     // const rowDataPastedFromClipboardRef = useRef(false)
 
-    const [rowValue, setRowValue] = useState("")
+    const [rowValue, setRowValue] = useState(data)
 
     useDebounce(() => {
-        typeof onDataChange === 'function' && onDataChange(rowValue) 
-        FitToContent(rowDataRef.current, 1024)
-            ;
+        resize && FitToContent(rowDataRef.current, 1024)
+        typeof onDataChange === 'function' && onDataChange(rowValue)
     }, 1000, [rowValue])
+
+    useEffect(() => {
+        ; console.log("##### OLOLO data changed - ", data);
+        setRowValue(data)
+    }, [data])
 
     return (
         <div className={stl["area-wrapper"]}>
