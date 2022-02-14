@@ -32,13 +32,12 @@ function CopyPasteArea({
                 style={{
                     width: "40rem",
                     minHeight: "10rem",
-                    backgroundColor: back
+                    backgroundColor: readonly ? "#e5e5e5" : back
                 }}
                 onChange={
                     (e) => {
                         console.log("textarea changed");
                         setRowValue(e.target.value)
-                        FitToContent(e.target, 800)
                     }
                 }
             >

@@ -19,23 +19,7 @@ function TablesMasterPage(props) {
 
     return (
         <LayerPage mainCaption="Мастер создания таблиц для pefl">
-            <Block header="Ждем не торопим ©">
-                <p>
-                    Создание таблиц со специфичными для pefl тегами
-                </p>
-                <p>
-                    Раздел в разработке
-                </p>
-                <p>
-                    Пока вы можете использовать пробный функционал из песочницы
-                </p>
-                <StyledButton
-                    shape="rounded"
-                    title="Перейти к песочнице"
-                >
-                    <a target='blank' href='https://eugenkondratiev.github.io/sandbox/pefltables'>Перейти</a>
-                </StyledButton>
-            </Block>
+
             <Block
                 header="Исходные данные">
                 <CopyPasteArea />
@@ -43,7 +27,7 @@ function TablesMasterPage(props) {
 
             <Block
                 header="Результат">
-                <CopyPasteArea readonly back="#e5e5e5"/>
+                <CopyPasteArea readonly />
             </Block>
 
         </LayerPage>
