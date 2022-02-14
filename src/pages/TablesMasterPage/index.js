@@ -22,7 +22,10 @@ function TablesMasterPage(props) {
 
             <Block
                 header="Исходные данные">
-                <CopyPasteArea />
+                <CopyPasteArea
+                    // iscopy={false} 
+                    ispaste
+                    />
             </Block>
 
             <Block

@@ -4,9 +4,10 @@ import Copy2Clipboard from '../Copy2Clipboard';
 import PasteFromClipboard from '../PasteFromClipboard';
 
 import FitToContent from './text-area-fit-2content';
+import useDebounce from '../../hooks/useDebounce';
 
 function CopyPasteArea({
-    readonly = false, iscopy = true, ispaste = true,
+    readonly = false, iscopy = true, ispaste = false,
     back = "#f0f2f5",
     ...props
 }) {
@@ -16,11 +17,12 @@ function CopyPasteArea({
     // const rowDataPastedFromClipboardRef = useRef(false)
 
     const [rowValue, setRowValue] = useState("")
-    useEffect(() => {
+
+    useDebounce(() => {
         console.log("rowValue chanched do smth");;
         FitToContent(rowDataRef.current, 1024)
-
-    }, [rowValue])
+            ;
+    }, 1000, [rowValue])
 
     return (
         <div className={stl["area-wrapper"]}>
@@ -43,20 +45,20 @@ function CopyPasteArea({
             >
             </textarea>
             <div className={stl['controls-wrapper']}>
-                <PasteFromClipboard
+                {ispaste && <PasteFromClipboard
                     className="p7modify"
                     cb={
                         (text) => {
                             console.log("text to paste");
                             setRowValue(text)
-                            //TODO useDebounce
                         }
                     }
-                />
-                <Copy2Clipboard
+                />}
+                {iscopy && <Copy2Clipboard
                     className="p7modify"
+                    _title="Скопировать данные в буфер обмена"
                     copytext={rowDataRef && rowDataRef.current && rowDataRef.current.value}
-                />
+                />}
             </div>
         </div>
     );
