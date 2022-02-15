@@ -8,3 +8,29 @@ button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button {
 button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button:hover {
     transform: scale(1.2);
 }
+
+
+
+.action-result-tooltip {
+    width: 120px;
+    text-align: center;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -3.1em;
+    left: -120px;
+    color: #3b7c25;
+    display: none;
+}
+
+.action-result-visible {
+    display: block;
+}
+
+.action-result-tooltip p {
+    margin: 0
+}
+
+.action-result-failed {
+    color: red
+}

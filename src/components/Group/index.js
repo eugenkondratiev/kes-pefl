@@ -1,4 +1,4 @@
-import { AutoComplete, Spin } from 'antd';
+import { Spin } from 'antd';
 import React, { useContext, useEffect, useLayoutEffect, useState } from 'react';
 import Block from '../Block';
 import ClubLabel from '../ClubLabel';
