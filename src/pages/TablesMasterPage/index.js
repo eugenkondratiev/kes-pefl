@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Block from '../../components/Block';
 import CopyPasteArea from '../../components/CopyPasteArea';
 import StyledButton from '../../components/StyledButton';
@@ -17,7 +17,7 @@ function TablesMasterPage(props) {
 
     useEffect(() => {
         // console.log("rowValue changed to ", rowData);;
-;
+        ;
         // rowData && form contro;s according to table columns
 
     }, [rowData])
@@ -43,13 +43,14 @@ function TablesMasterPage(props) {
                     onDataChange={onChangeRowData}
                 />
             </Block>
-            <form>
-                <StyledButton
-                    onClick={showPeflStyledTable}
-                >
-                    Получить таблицу
-                </StyledButton>
-            </form>
+                <form className={stl.controlForm}>
+                    <StyledButton
+                        onClick={showPeflStyledTable}
+                    >
+                        Получить таблицу
+                    </StyledButton>
+                    <StyledButton>OLOLO</StyledButton>
+                </form>
             {peflTable && <Block
                 header="Результат">
                 <CopyPasteArea

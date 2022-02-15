@@ -1,5 +1,5 @@
 // import { getTitle } from 'hookrouter';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { SvgCopyIcon } from '../../assets/svg/icons';
 import StyledButton from '../StyledButton';
 import './Copy2Clipboard.css';
