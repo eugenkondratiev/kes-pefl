@@ -16,8 +16,6 @@ function CopyPasteArea({
 
 
     const rowDataRef = useRef(null)
-    // const rowDataPastedFromClipboardRef = useRef(false)
-
     const [rowValue, setRowValue] = useState(data)
 
     useDebounce(() => {
@@ -26,7 +24,6 @@ function CopyPasteArea({
     }, 1000, [rowValue])
 
     useEffect(() => {
-        ; console.log("##### OLOLO data changed - ", data);
         setRowValue(data)
     }, [data])
 
@@ -44,7 +41,6 @@ function CopyPasteArea({
                 }}
                 onChange={
                     (e) => {
-                        // console.log("textarea changed");
                         setRowValue(e.target.value)
                     }
                 }
@@ -55,7 +51,6 @@ function CopyPasteArea({
                     className="p7modify"
                     cb={
                         (text) => {
-                            // console.log("text to paste");
                             setRowValue(text)
                         }
                     }
@@ -63,7 +58,7 @@ function CopyPasteArea({
                 {iscopy && <Copy2Clipboard
                     className="p7modify"
                     _title="Скопировать данные в буфер обмена"
-                    copytext={rowDataRef && rowDataRef.current && rowDataRef.current.value}
+                    copytext={data}
                 />}
             </div>
         </div>

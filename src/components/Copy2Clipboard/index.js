@@ -26,11 +26,9 @@ function Copy2Clipboard({ copytext, _title = 'Скопировать cсылку
                     // console.log(getTitle())
                     navigator.clipboard.writeText(copytext)
                         .then(rlt => {
-                            console.log("successful copying", rlt);
                             setResultState(SUCCESSFUL);
                             resetHidingTimer()
                         }).catch(e => {
-                            console.log("copying error ", e);
                             setResultState(FAILED);
                             resetHidingTimer()
                         })

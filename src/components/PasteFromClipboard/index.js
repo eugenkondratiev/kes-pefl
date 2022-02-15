@@ -1,4 +1,3 @@
-import { getTitle } from 'hookrouter';
 import React from 'react';
 import { SvgPasteIcon } from '../../assets/svg/icons';
 import StyledButton from '../StyledButton';

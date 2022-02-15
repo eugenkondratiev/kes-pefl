@@ -1,26 +1,45 @@
-button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button {
+button.ant-btn.ant-btn-circle.ant-btn-icon-only {
     min-width: 1rem;
     box-shadow: 1px 1px 2px 2px rgb(154, 209, 177);
     color: #3b7c25;
+    border-color: #3b7c25;
 
 }
 
-button.ant-btn.ant-btn-circle.ant-btn-icon-only.styled-button:hover {
-    transform: scale(1.2);
+button.ant-btn.ant-btn-circle {
+    min-width: 2rem;
+    box-shadow: 1px 1px 2px 2px rgb(154, 209, 177);
+    color: #3b7c25;
+    border-color: #3b7c25;
+
 }
 
 
+button.ant-btn.ant-btn-circle.ant-btn-icon-only:hover {
+    transform: scale(1.1);
+    color: #c9f8b7;
+    border-color: #c9f8b7
+}
+
+button.ant-btn.ant-btn-circle:hover {
+    transform: scale(1.1);
+
+    color: #c9f8b7;
+    border-color: #c9f8b7
+}
 
 .action-result-tooltip {
-    width: 120px;
+    width: fit-content;
     text-align: center;
-    padding: 5px 0;
+    padding: 4px;
     position: absolute;
     z-index: 1;
-    top: -3.1em;
-    left: -120px;
+    top: -4em;
+    left: -110px;
     color: #3b7c25;
     display: none;
+    background-color: #c9f8b7;
+    border-radius: 8px;
 }
 
 .action-result-visible {
