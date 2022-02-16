@@ -23,6 +23,11 @@ function CopyPasteArea({
         typeof onDataChange === 'function' && onDataChange(rowValue)
     }, 1000, [rowValue])
 
+    useDebounce(() => {
+        resize && FitToContent(rowDataRef.current, 1024)
+    }, 2000, [data])
+
+
     useEffect(() => {
         setRowValue(data)
     }, [data])

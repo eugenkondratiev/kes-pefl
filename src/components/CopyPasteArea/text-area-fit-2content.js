@@ -4,7 +4,7 @@ export default function FitToContent(id, maxHeight) {
         return;
     }
 
-    if (text.clientHeight == text.scrollHeight) {
+    if (text.clientHeight === text.scrollHeight) {
         text.style.height = "30px";
     }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Block from '../../components/Block';
 import CopyPasteArea from '../../components/CopyPasteArea';
 import StyledButton from '../../components/StyledButton';
+import useLocalStorage from '../../hooks/useLocalStorage';
 // import StyledButton from '../../components/StyledButton';
 import formPeflTable from '../../utils/pefl-views/form-table-in-pefl-style';
 import LayerPage from '../LayerPage';
@@ -14,6 +15,7 @@ function TablesMasterPage(props) {
 
     const [rowData, setRowData] = useState("")
     const [peflTable, setPeflTable] = useState("");
+    const [maincolor, setMaincolor] = useLocalStorage("reflmaincolor", "#c9f8b7");
 
     useEffect(() => {
         // console.log("rowValue changed to ", rowData);;
@@ -25,11 +27,13 @@ function TablesMasterPage(props) {
     function onChangeRowData(text) {
         // console.log("rowValue changed to ", text);;
         setRowData(text)
+
+
     }
 
     function showPeflStyledTable() {
-        rowData && setPeflTable(formPeflTable(rowData))
-
+        rowData && setPeflTable([""])
+        setTimeout(() => { rowData && setPeflTable(formPeflTable(rowData)) }, 50)
     }
     return (
         <LayerPage mainCaption="Мастер создания таблиц для pefl">
@@ -43,14 +47,25 @@ function TablesMasterPage(props) {
                     onDataChange={onChangeRowData}
                 />
             </Block>
-                <form className={stl.controlForm}>
-                    <StyledButton
-                        onClick={showPeflStyledTable}
-                    >
-                        Получить таблицу
-                    </StyledButton>
-                    <StyledButton>OLOLO</StyledButton>
-                </form>
+            <form className={stl.controlForm}>
+                <div>
+                    {maincolor}
+                    <input
+                        type='color' name='colorpicker'
+                        value={maincolor}
+                        onChange={(e) => {
+                            console.log(e.target.value);
+                            setMaincolor(e.target.value)
+                        }}
+                    />
+                </div>
+                <StyledButton
+                    onClick={showPeflStyledTable}
+                >
+                    Получить таблицу
+                </StyledButton>
+                <StyledButton>OLOLO</StyledButton>
+            </form>
             {peflTable && <Block
                 header="Результат">
                 <CopyPasteArea
