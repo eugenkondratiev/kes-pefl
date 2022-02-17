@@ -3,7 +3,7 @@ import Block from '../../components/Block';
 import CopyPasteArea from '../../components/CopyPasteArea';
 import MultiPageControls from '../../components/MultiPageControls';
 import StyledButton from '../../components/StyledButton';
-import useLocalStorage from '../../hooks/useLocalStorage';
+// import useLocalStorage from '../../hooks/useLocalStorage';
 // import StyledButton from '../../components/StyledButton';
 import formPeflTable from '../../utils/pefl-views/form-table-in-pefl-style';
 import LayerPage from '../LayerPage';
@@ -16,7 +16,8 @@ function TablesMasterPage(props) {
 
     const [rowData, setRowData] = useState("")
     const [peflTable, setPeflTable] = useState("");
-    const [maincolor, setMaincolor] = useLocalStorage("reflmaincolor", "#c9f8b7");
+
+    // const [maincolor, setMaincolor] = useLocalStorage("reflmaincolor", "#c9f8b7");
 
     useEffect(() => {
         // console.log("rowValue changed to ", rowData);;
@@ -41,14 +42,16 @@ function TablesMasterPage(props) {
 
             <Block
                 header="Исходные данные">
+                <label for="mainDataArea">Вставьте скопированную из Excel таблицу &#8595;</label>
                 <CopyPasteArea
+                    name="rawDataArea"
                     // iscopy={false} 
                     data={rowData}
                     ispaste
                     onDataChange={onChangeRowData}
                 />
             </Block>
-            <Block header="Настройки">
+            <Block header="Настройки" collapsed>
 
                 <form className={stl.controlForm}>
                     {/* <div>
@@ -70,7 +73,6 @@ function TablesMasterPage(props) {
             >
                 Получить таблицу
             </StyledButton>
-            <StyledButton>OLOLO</StyledButton>
             {peflTable && <Block
                 header="Результат">
                 <CopyPasteArea
