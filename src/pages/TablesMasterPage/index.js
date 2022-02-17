@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Block from '../../components/Block';
 import CopyPasteArea from '../../components/CopyPasteArea';
+import MultiPageControls from '../../components/MultiPageControls';
 import StyledButton from '../../components/StyledButton';
 import useLocalStorage from '../../hooks/useLocalStorage';
 // import StyledButton from '../../components/StyledButton';
@@ -47,25 +48,29 @@ function TablesMasterPage(props) {
                     onDataChange={onChangeRowData}
                 />
             </Block>
-            <form className={stl.controlForm}>
-                <div>
-                    {maincolor}
-                    <input
-                        type='color' name='colorpicker'
-                        value={maincolor}
-                        onChange={(e) => {
-                            console.log(e.target.value);
-                            setMaincolor(e.target.value)
-                        }}
-                    />
-                </div>
-                <StyledButton
-                    onClick={showPeflStyledTable}
-                >
-                    Получить таблицу
-                </StyledButton>
-                <StyledButton>OLOLO</StyledButton>
-            </form>
+            <Block header="Настройки">
+
+                <form className={stl.controlForm}>
+                    {/* <div>
+                        {maincolor}
+                        <input
+                            type='color' name='colorpicker'
+                            value={maincolor}
+                            onChange={(e) => {
+                                // console.log(e.target.value);
+                                setMaincolor(e.target.value)
+                            }}
+                        />
+                    </div> */}
+                    <MultiPageControls />
+                </form>
+            </Block>
+            <StyledButton
+                onClick={showPeflStyledTable}
+            >
+                Получить таблицу
+            </StyledButton>
+            <StyledButton>OLOLO</StyledButton>
             {peflTable && <Block
                 header="Результат">
                 <CopyPasteArea
